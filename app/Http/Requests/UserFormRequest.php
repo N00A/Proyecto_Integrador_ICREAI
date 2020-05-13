@@ -28,6 +28,8 @@ class UserFormRequest extends FormRequest
             'name' => 'required|min:4',
             'password' => 'required|max:25',
             'password' => 'required|min:6',
+            'activo' => 'required|max:1',
+            'activo' => 'required|min:1',
 
         ];
     }

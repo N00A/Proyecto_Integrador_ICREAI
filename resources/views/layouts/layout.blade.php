@@ -137,7 +137,7 @@
 			<ol class="breadcrumb">
 				<li class="active">Bienvenido</li>
 
-				<li class=""><a href="#">
+				<li class=""><a href="{{ route('moderador.index') }}">
 						<button class="btn btn-info">Moderar</button></a></li>
 
 				<li class=""><a href="{{ route('administrador.index') }}">

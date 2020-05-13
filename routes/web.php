@@ -32,13 +32,17 @@ Route::get('/publicaciones', function () {
     return view('publicaciones');
 })->name('publicaciones');
 
-Route::resource('administrador', 'UserController');
+Route::resource('administrador', 'AdminController');
+
+Route::resource('moderador', 'ModController');
+
+Route::resource('rol','RolController');
 
 Auth::routes();
 
 Route::get('/profile', 'UserController@profile')->name('user.profile');
 
-Route::patch('/profile', 'UserController@update_profile')->name('user.profile.update');
+Route::post('/profile', 'UserController@update_profile')->name('user.profile.update');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
