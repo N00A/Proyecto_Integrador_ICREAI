@@ -24,9 +24,6 @@
                             <h4>Email</h4>
                             <input type="text" name="email" id="email" class="form-control inputsm" value="{{$user->email}}">
                             </br>
-                            <h4>Password</h4>
-                            <input type="text" name="password" id="password" class="form-control inputsm" value="{{$user->password}}">
-                            </br>
                             <input type="submit" value="Guardar Datos" class="btn btn-success btn-block">
                             </br>
                             {{ Form::close() }}

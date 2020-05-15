@@ -17,7 +17,7 @@ class AdminController extends Controller
 
 
     public function __construct()
-    {
+    {     
         $this->middleware('auth');
     }
 
@@ -53,11 +53,11 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'password' => 'required', 'activo' => 'required']);
+        $this->validate($request, ['name' => 'required', 'email' => 'required', 'activo' => 'required']);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
+     // $user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
         $user->activo = $request->activo;
         $user->save(); // Se guarda el registro en la base de datos.
         return redirect()->route('administrador.index')->with('success', 'Registro creado satisfactoriamente');
@@ -96,11 +96,11 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'password' => 'required', 'activo' => 'required']);
+        $this->validate($request, ['name' => 'required', 'email' => 'required', 'activo' => 'required']);
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
+      //$user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
         $user->activo = $request->activo;
         $user->save(); // Se guarda el registro en la base de datos.
 

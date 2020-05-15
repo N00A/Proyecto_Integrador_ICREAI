@@ -30,7 +30,7 @@ class UserController extends Controller
     public function update_profile(Request $request)
     {
         $this->validate($request, [
-            'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048','name' => 'required', 'email' => 'required', 'password' => 'required'
+            'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048','name' => 'required', 'email' => 'required'
         ]);
 
         $filename = Auth::id() . '_' . time() . '.' . $request->avatar->getClientOriginalExtension();
@@ -38,8 +38,6 @@ class UserController extends Controller
         $filename1 = $request->name;
         
         $filename2 = $request->email;
-        
-        $filename3 = bcrypt($request->password);
 
         $request->avatar->move(public_path('uploads/avatars'), $filename);
 
@@ -47,7 +45,6 @@ class UserController extends Controller
         $user->avatar = $filename;
         $user->name = $filename1;
         $user->email = $filename2;
-        $user->password = $filename3;
         $user->save();
 
         return redirect()->route('user.profile');

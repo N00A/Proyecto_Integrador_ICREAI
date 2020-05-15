@@ -21,28 +21,33 @@ Route::get('/login', function () {
 
 Route::get('/inicio', function () {
     return view('inicio');
-})->name('inicio');
+})->name('inicio')->middleware('age');
 
 
 Route::get('/escrito', function () {
     return view('escrito');
-})->name('escrito');
+})->name('escrito')->middleware('age');
 
 Route::get('/publicaciones', function () {
     return view('publicaciones');
-})->name('publicaciones');
+})->name('publicaciones')->middleware('age');
 
-Route::resource('administrador', 'AdminController');
+Route::get('/bloaqueado', function () {
+    return view('errors.bloqueado');
+})->name('bloaqueado');
 
-Route::resource('moderador', 'ModController');
 
-Route::resource('rol','RolController');
+Route::resource('administrador', 'AdminController')->middleware('age');
+
+Route::resource('moderador', 'ModController')->middleware('age');
+
+Route::resource('rol','RolController')->middleware('age');
 
 Auth::routes();
 
-Route::get('/profile', 'UserController@profile')->name('user.profile');
+Route::get('/profile', 'UserController@profile')->name('user.profile')->middleware('age');
 
-Route::post('/profile', 'UserController@update_profile')->name('user.profile.update');
+Route::post('/profile', 'UserController@update_profile')->name('user.profile.update')->middleware('age');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 

@@ -30,13 +30,6 @@
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
-                                        <h4>Password</h4>
-                                        <input type="text" name="password" id="password" class="form-control inputsm" value="{{$users->password}}">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="form-group">
                                         <h4>Activo (1) Inactivo (0)</h4>
                                         <input type="number" name="activo" id="activo" class="form-control inputsm" value="{{$users->activo}}">
                                     </div>
