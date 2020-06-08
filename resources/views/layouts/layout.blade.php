@@ -9,7 +9,6 @@
 	<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/datepicker3.css')}}" rel="stylesheet">
 	<link href="{{asset('css/styles.css')}}" rel="stylesheet">
-
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 	<!--[if lt IE 9]>
@@ -102,7 +101,7 @@
 		</form>
 		<ul class="nav menu">
 			<li class="active"><a href="{{ route('inicio') }}"><em class="fa fa-home">&nbsp;</em>Inicio</a></li>
-			<li><a href="{{ route('publicaciones') }}"><em class="fa fa-folder-open">&nbsp;</em>Publicaciones</a></li>
+		<!--	<li><a href="{{ route('publicaciones') }}"><em class="fa fa-folder-open">&nbsp;</em>Publicaciones</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 					<em class="fa fa-eye">&nbsp;</em> Genero <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -117,7 +116,7 @@
 							<span class="fa fa-arrow-right">&nbsp;</span> Terror
 						</a></li>
 				</ul>
-			</li>
+			</li>-->
 			<li><a href="{{ route('user.profile') }}"><em class="fa fa-user-circle-o">&nbsp;</em>Perfil</a></li>
 			<li> <a class="dropdown-item fa fa-window-close" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -127,6 +126,7 @@
 					@csrf
 				</form>
 			</li>
+			<li><img width="230px" height="150px" src='/uploads/fondos/fondo1.jpg'></li>
 		</ul>
 
 	</div>
@@ -135,7 +135,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li class="active">Bienvenido</li>
+				<li class="active">Opciones</li>
 
 				<li class=""><a href="{{ route('moderador.index') }}">
 						<button class="btn btn-info">Moderar</button></a></li>
@@ -148,7 +148,7 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">@yield('title_princ')</h1>
+				<h1 class="page-header" style="font-weight: bold;">@yield('title_princ')</h1>
 			</div>
 
 			@yield('pp')

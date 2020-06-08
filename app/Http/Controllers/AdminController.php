@@ -23,7 +23,8 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-
+        
+        $request->User()->authorizeRoles('admin');
         if ($request) {
             $query = trim($request->get('searchText'));
             $users = DB::table('users')->where('email', 'LIKE', '%' . $query . '%')
@@ -53,7 +54,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'activo' => 'required']);
+        $this->validate($request, ['name' => 'required|max:40|min:3', 'email' => 'required|max:40|min:3', 'activo' => 'required|max:1|min:1']);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -96,7 +97,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'activo' => 'required']);
+        $this->validate($request, ['name' => 'required|max:40|min:3', 'email' => 'required|max:40|min:3', 'activo' => 'required|max:1|min:1']);
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;

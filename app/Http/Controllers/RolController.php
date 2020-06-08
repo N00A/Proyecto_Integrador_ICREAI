@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\RoleUser;
-
+use Illuminate\Support\Facades\DB;
 class RolController extends Controller
 {
     /**
@@ -19,11 +19,20 @@ class RolController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-
-        $roles = RoleUser::all();
+     
+     /*   $roles = RoleUser::all();
         return view('adminRol.index')->with('roles', $roles);
+*/
+        $request->User()->authorizeRoles('admin');
+        if ($request) {
+            $query = trim($request->get('searchText'));
+            $roles = DB::table('role_user')->where('id', 'LIKE', '%' . $query . '%')
+                ->orderBy('id', 'desc')
+                ->paginate(5);
+            return view('adminRol.index', ["roles" => $roles, "searchText" => $query]);
+        }
     }
 
     /**
@@ -79,7 +88,7 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['role_id' => 'required']);
+        $this->validate($request, ['role_id' => 'required|max:1|min:1']);
         RoleUser::find($id)->update($request->all());
         return redirect()->route('rol.index')->with('success', 'Registro actualizado');
     }

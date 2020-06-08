@@ -3,36 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Genero;
 use Illuminate\Support\Facades\DB;
-
-class ModController extends Controller
+class InicioController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        $genero=DB::table('generos')->select('generos.name', 'generos.id')->get();
+        return view('inicio.index')->with('genero',$genero);
     }
-
-    public function index(Request $request)
-    {
-        $request->User()->authorizeRoles(['admin', 'mod']);
-        if ($request) {
-            $query = trim($request->get('searchText'));
-            $users = DB::table('users')->where('email', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'desc')
-                ->paginate(5);
-            return view('mod.index', ["users" => $users, "searchText" => $query]);
-        }
-    }
-    
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +25,7 @@ class ModController extends Controller
      */
     public function create()
     {
-        return view('mod.create');
+        //
     }
 
     /**
@@ -52,9 +36,7 @@ class ModController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['activo' => 'required|max:1|min:1']);
-        User::create($request->all());
-        return redirect()->route('moderador.index')->with('success', 'Registro creado satisfactoriamente');
+        //
     }
 
     /**
@@ -65,8 +47,7 @@ class ModController extends Controller
      */
     public function show($id)
     {
-        $users=User::find($id);
-        return view('mod.show',compact('users'));
+        //
     }
 
     /**
@@ -77,8 +58,7 @@ class ModController extends Controller
      */
     public function edit($id)
     {
-        $users = User::find($id);
-        return view('mod.edit', compact('users'));
+        //
     }
 
     /**
@@ -90,9 +70,7 @@ class ModController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['activo' => 'required|max:1|min:1']);
-        User::find($id)->update($request->all());
-        return redirect()->route('moderador.index')->with('success', 'Registro actualizado');
+        //
     }
 
     /**
@@ -103,8 +81,6 @@ class ModController extends Controller
      */
     public function destroy($id)
     {
-        
+        //
     }
-
-    
 }

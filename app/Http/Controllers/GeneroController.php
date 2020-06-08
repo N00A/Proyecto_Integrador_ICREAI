@@ -3,36 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\User;
-use Illuminate\Support\Facades\DB;
+use App\Genero;
 
-class ModController extends Controller
+class GeneroController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $request->User()->authorizeRoles(['admin', 'mod']);
-        if ($request) {
-            $query = trim($request->get('searchText'));
-            $users = DB::table('users')->where('email', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'desc')
-                ->paginate(5);
-            return view('mod.index', ["users" => $users, "searchText" => $query]);
-        }
+        $genero = Genero::all();
+        return view('genero.index', compact('genero'));
     }
-    
-
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +30,10 @@ class ModController extends Controller
      */
     public function create()
     {
-        return view('mod.create');
+        $genero = Genero::all();
+
+        //  dd($exquisito);
+        return view('genero.create', compact('genero'));
     }
 
     /**
@@ -52,9 +44,10 @@ class ModController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['activo' => 'required|max:1|min:1']);
-        User::create($request->all());
-        return redirect()->route('moderador.index')->with('success', 'Registro creado satisfactoriamente');
+
+        $this->validate($request, ['name' => 'required|max:40|min:3', 'descripcion' => 'required|min:10']);
+        Genero::create($request->all());
+        return redirect()->route('genero.index')->with('success', 'Registro creado satisfactoriamente');
     }
 
     /**
@@ -65,8 +58,8 @@ class ModController extends Controller
      */
     public function show($id)
     {
-        $users=User::find($id);
-        return view('mod.show',compact('users'));
+        $genero = Genero::find($id);
+        return view('genero.show', compact('genero'));
     }
 
     /**
@@ -77,8 +70,8 @@ class ModController extends Controller
      */
     public function edit($id)
     {
-        $users = User::find($id);
-        return view('mod.edit', compact('users'));
+        $genero = Genero::find($id);
+        return view('genero.edit', compact('genero'));
     }
 
     /**
@@ -90,9 +83,15 @@ class ModController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['activo' => 'required|max:1|min:1']);
-        User::find($id)->update($request->all());
-        return redirect()->route('moderador.index')->with('success', 'Registro actualizado');
+        $this->validate($request, ['name' => 'required|max:40|min:3', 'descripcion' => 'required|min:10']);
+        $genero = Genero::find($id);
+        $genero->name = $request->name;
+        $genero->descripcion = $request->descripcion;
+      //$user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
+        
+        $genero->save(); // Se guarda el registro en la base de datos.
+
+        return redirect()->route('genero.index')->with('success', 'Registro actualizado');
     }
 
     /**
@@ -103,8 +102,7 @@ class ModController extends Controller
      */
     public function destroy($id)
     {
-        
+        Genero::find($id)->delete();
+        return redirect()->route('genero.index')->with('success', 'Registro Eliminado');
     }
-
-    
 }

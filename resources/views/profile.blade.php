@@ -1,16 +1,29 @@
 @extends('layouts.layout')
 @section('title','Icreai_Profile')
-@section('title_princ','Profile')
+@section('title_princ','Perfil')
 @section('pp')
 
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <strong>Error!</strong> Revise los campos obligatorios.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            @if(Session::has('success'))
+            <div class="alert alert-info">
+                {{Session::get('success')}}
+            </div>
+            @endif
             <div class="panel panel-default">
                 <h3>Foto</h3>
                 <img width="100px" height="100px" src="{{ asset('uploads/avatars/'.$user->avatar) }}">
-                <h2>Datos</h2>
-
                 <div class="panel-body">
                     <div class="table-container">
                         {{ Form::open(['route' => ['user.profile.update'], 'files' => true, 'method' => 'POST']) }}
@@ -18,6 +31,7 @@
                             <h4>Selecciona una foto</h4>
                             <input type="file" name="avatar">
                             </br>
+                            <h2>Datos</h2>
                             <h4>Nombre</h4>
                             <input type="text" name="name" id="name" class="form-control inputsm" value="{{$user->name}}">
                             </br>

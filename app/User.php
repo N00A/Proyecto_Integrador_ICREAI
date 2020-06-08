@@ -55,7 +55,7 @@ class User extends Authenticatable
         if ($this->hasAnyRole($roles)) {
             return true;
         }
-        abort(401, 'Esta acción no está autorizada.');
+        abort(redirect($redirectTo = 'autorizacion'));
     }
     public function hasAnyRole($roles)
     {
@@ -78,5 +78,12 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    public function escrito()
+    {
+        return $this
+            ->hasMany('App\Escrito')
+            ->withTimestamps();
     }
 }

@@ -1,23 +1,24 @@
 @extends('layouts.layout')
 @section('title','Icreai_Mod')
-@section('title_princ','Mod Center')
+@section('title_princ','Editar Estados')
 @section('pp')
 
-<div class="row">
+<div class="row" style="margin-left: 300px;">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-        <h3>Listado de Usuarios</h3>
+        
         @include('mod.search')
     </div>
 </div>
 <br>
-<div class="row">
+<div class="row" style="margin: 0 auto;">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="table-responsive">
-            <table class="table table-striped table-bordered table-condensed table-hover">
+        <h2 style="text-align: center;">Listado de Usuarios</h2>
+            <table class="table  table-bordered table-condensed table-hover">
                 <thead>
-                    <th>Name</th>
+                    <th>Nombre</th>
                     <th>Email</th>
-                    <th>Activo</th>
+                    <th>Estado</th>
                     <th>Opciones</th>
                 </thead>
                 @foreach ($users as $user)
