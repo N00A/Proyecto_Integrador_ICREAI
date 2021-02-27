@@ -21,8 +21,8 @@
                 {{Session::get('success')}}
             </div>
             @endif
-            <div class="panel panel-default" style="padding: 20px;">
-                <div style="margin-top: 20px;">
+            <div class="panel panel-default formSeparacion">
+                <div>
                     <div class="table-container">
                         <form method="POST" action="{{ route('genero.update',$genero->id) }}" role="form">
                             {{ csrf_field() }}
@@ -31,15 +31,15 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
                                         <h4>Genero</h4>
-                                        <input type="text" name="name" id="name" class="form-control inputsm" value="{{$genero->name}}">
+                                        <input type="text" name="name" id="name" class="form-control inputsm cajasGrandes" value="{{$genero->name}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="form-group">
-                                        <h4>Descripciòn</h4>
-                                        <textarea class="form-control" name="descripcion" id="descripcion" rows="10" cols="40" style="width: 700px;" style="text-align: left;">{{$genero->descripcion}}</textarea>
+                                        <h4>Descripción</h4>
+                                        <textarea class="form-control cajasGrandes textLeft" name="descripcion" id="descripcion" rows="10" cols="40">{{$genero->descripcion}}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Notifications\myresetPassword;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -85,5 +85,10 @@ class User extends Authenticatable
         return $this
             ->hasMany('App\Escrito')
             ->withTimestamps();
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new myresetPassword($token));
     }
 }

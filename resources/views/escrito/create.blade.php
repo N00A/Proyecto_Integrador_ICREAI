@@ -19,7 +19,7 @@
             </div>
             @endif
 
-            <div class="panel panel-default" style="padding: 20px;">
+            <div class="panel panel-default formSeparacion">
                 <div>
 
                     <table id="mytable" class="table table-bordred">
@@ -51,7 +51,7 @@
 
                                 <td>
                                     <h3 class="alert alert-info">Asì va la historia:</h3>
-                                    <h4>{{\Illuminate\Support\Str::substr($escrito->texto,80)}}</h4>
+                                    <h4>{{\Illuminate\Support\Str::substr($escrito->texto,300)}}</h4>
                                 </td>
 
 
@@ -77,14 +77,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="margin-top: 20px;">
+                <div>
                     <div class="table-container">
                         <form method="POST" action="{{ route('escrito.store') }}" role="form">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="texto" id="texto" rows="10" cols="40" placeholder="Continua la historia" style="width: 700px;"></textarea>
+                                        <textarea class="form-control cajasGrandes" name="texto" id="texto" rows="10" cols="40" placeholder="Continua la historia"></textarea>
                                     </div>
                                 </div>
                             </div>

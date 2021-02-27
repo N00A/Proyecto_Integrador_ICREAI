@@ -80,7 +80,7 @@ class EscritoController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['texto' => 'required|max:1800|min:160', 'user_id' => 'required', 'genero_id' => 'required']);
+        $this->validate($request, ['texto' => 'required|max:1800|min:500', 'user_id' => 'required', 'genero_id' => 'required']);
         Escrito::create($request->all());
 
         $query = $request->genero_id;

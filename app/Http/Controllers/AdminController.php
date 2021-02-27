@@ -27,8 +27,10 @@ class AdminController extends Controller
         $request->User()->authorizeRoles('admin');
         if ($request) {
             $query = trim($request->get('searchText'));
-            $users = DB::table('users')->where('email', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'desc')
+            $users = DB::table('users')
+                ->where('email', 'LIKE', '%' . $query . '%')
+                ->where('id','<>',$request->User()->id)
+                ->orderBy('id', 'asc')
                 ->paginate(5);
             return view('adminUser.index', ["users" => $users, "searchText" => $query]);
         }

@@ -3,8 +3,8 @@
 @section('title_princ','Administrar Roles')
 @section('pp')
 
-<div class="row" style="margin-left: 300px;">
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+<div class="row textCenter">
+    <div class="barrasDeBusq">
        
         @include('adminRol.search')
 
@@ -14,21 +14,23 @@
 <div class="row" style="margin: 0 auto;">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="table-responsive">
-        <h2 style="text-align: center;">Listado de Roles</h2>
-            <table class="table  table-bordered table-condensed table-hover">
+        <h2 class="textCenter negrita">Listado de Roles</h2>
+        <h4>Roles: Moderador (1) Usuario Normal (2) Administrador (3)</h4>
+            <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
-                    <th>Id</th>
-                    <th>Role_Id</th>
-                    <th>User_Id</th>
-                    <th>Opciones</th>
+                    
+                    <th class="textCenter">Usuario Id</th>
+                    <th class="textCenter">Nombre</th>
+                    <th class="textCenter">Rol Id</th>
+                    <th class="textCenter">Opciones</th>
                 </thead>
 
                 
                 @foreach ($roles as $rol)
                 <tr>
-                    <td>{{ $rol->id}}</td>
-                    <td>{{ $rol->role_id}}</td>
                     <td>{{ $rol->user_id}}</td>
+                    <td>{{ $rol->name}}</td>
+                    <td>{{ $rol->role_id}}</td>
                     <td>
                         <a href="{{URL::action('RolController@edit',$rol->id)}}">
                             <button class="btn btn-info">Editar</button></a>

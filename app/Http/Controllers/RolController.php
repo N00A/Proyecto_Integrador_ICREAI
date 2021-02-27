@@ -28,9 +28,13 @@ class RolController extends Controller
         $request->User()->authorizeRoles('admin');
         if ($request) {
             $query = trim($request->get('searchText'));
-            $roles = DB::table('role_user')->where('id', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'desc')
-                ->paginate(5);
+            $roles = DB::table('role_user')
+            ->join('users', 'users.id', '=', 'role_user.user_id')
+            ->select('role_user.*', 'users.name')
+            ->where('role_user.user_id', 'LIKE', '%' . $query . '%')
+            ->where('role_user.user_id','<>',$request->User()->id)
+            ->orderBy('users.id', 'asc')
+            ->paginate(5);
             return view('adminRol.index', ["roles" => $roles, "searchText" => $query]);
         }
     }

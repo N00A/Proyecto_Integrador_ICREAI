@@ -1,10 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
+namespace Database\Seeders;
+
 use App\User;
 use App\Role;
 
-class UserTableSeeder extends Seeder
+use Illuminate\Database\Seeder;
+
+class UserTableSeeder  extends Seeder
 {
     public function run()
     {

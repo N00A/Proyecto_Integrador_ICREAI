@@ -25,8 +25,12 @@ class ModController extends Controller
         $request->User()->authorizeRoles(['admin', 'mod']);
         if ($request) {
             $query = trim($request->get('searchText'));
-            $users = DB::table('users')->where('email', 'LIKE', '%' . $query . '%')
-                ->orderBy('id', 'desc')
+            $users = DB::table('users')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->select('users.*', 'role_user.role_id')
+                ->where('email', 'LIKE', '%' . $query . '%')
+                ->where('role_user.role_id', '=', 2)
+                ->orderBy('users.id', 'asc')
                 ->paginate(5);
             return view('mod.index', ["users" => $users, "searchText" => $query]);
         }

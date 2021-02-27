@@ -22,17 +22,18 @@
             @endif
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Editar Rol Del Usuario</h3>
+                    <h3 class="panel-title negrita">Editar Rol Del Usuario</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body tetxCenter">
                     <div class="table-container">
                         <form method="POST" action="{{ route('rol.update',$roles->id) }}" role="form">
                             {{ csrf_field() }}
+                            <h4 class="textCenter">Moderador (1) Usuario Normal (2) Administrador (3)</h4>
                             <input name="_method" type="hidden" value="PATCH">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="role_id" id="role_id" class="form-control inputsm" value="{{$roles->role_id}}">
+                                        <input type="number" min="1" max="3" name="role_id" id="role_id" class="form-control inputsm textCenter" value="{{$roles->role_id}}">
                                     </div>
                                 </div>
                             </div>

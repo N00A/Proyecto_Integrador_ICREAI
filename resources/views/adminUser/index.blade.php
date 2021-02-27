@@ -3,16 +3,16 @@
 @section('title_princ','Administrar Usuarios')
 @section('pp')
 
-<div class="row" style="margin-left: 300px;">
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+<div class="row textCenter">
+    <div class="barrasDeBusq">
 
         @include('adminUser.search')
 
         <a href="{{ route('rol.index') }}">
-            <button class="btn btn-success">Gestionar Roles</button></a>
+            <button class="btn btn-success btnsDeGestion">Gestionar Roles</button></a>
 
         <a href="{{ route('genero.index') }}">
-            <button class="btn btn-success">Gestionar Generos</button></a>
+            <button class="btn btn-success btnsDeGestion">Gestionar Generos</button></a>
 
 
     </div>
@@ -21,14 +21,15 @@
 <div class="row" style="margin: 0 auto;">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="table-responsive">
-            <h2 style="text-align: center;">Listado de Usuarios</h2>
-            <table class="table  table-bordered table-condensed table-hover">
+            <h2 class="textCenter negrita">Listado de Usuarios</h2>
+            <h4>Estado: Activo (1) Inactivo (0)</h4>
+            <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Estado</th>
-                    <th>Opciones</th>
+                    <th class="textCenter">Id</th>
+                    <th class="textCenter">Nombre</th>
+                    <th class="textCenter">Correo</th>
+                    <th class="textCenter">Estado</th>
+                    <th class="textCenter">Opciones</th>
                 </thead>
                 @foreach ($users as $user)
                 <tr>
