@@ -28,11 +28,11 @@
 
                                 @foreach($genero as $genero)
 
-                                <h3 class="alert alert-info">Género Seleccionado:</h3>
+                                <h3 class="alert alert-info informaciones">Género Seleccionado:</h3>
 
                                 <h3>{{$genero->name}}</h3>
 
-                                <h3 class="alert alert-info">¿De que trata?</h3>
+                                <h3 class="alert alert-info informaciones">¿De que trata?</h3>
                                 <h4>{{$genero->descripcion}}</h4>
 
                                 @endforeach
@@ -43,15 +43,18 @@
                         <tbody>
 
 
-                            @if($escrito->count())
+                            @if($escrito->count() and $corte!=null)
 
                             @foreach($escrito as $escrito)
 
                             <tr>
 
                                 <td>
-                                    <h3 class="alert alert-info">Asì va la historia:</h3>
-                                    <h4>{{\Illuminate\Support\Str::substr($escrito->texto,300)}}</h4>
+                                    <h3 class="alert alert-info informaciones">Asì va la historia:</h3>
+
+                                    <h4 class="textJutificado">{{\Illuminate\Support\Str::substr($escrito->texto,$corte)}}</h4>
+                                    <!-- {{\Illuminate\Support\Str::substr($escrito->texto,300)}}-->
+                                    <!-- {{\Illuminate\Support\Str::length($escrito->texto)/33}}-->
                                 </td>
 
 
@@ -62,14 +65,14 @@
                             @else
 
                             <tr>
-                                <td class="alert alert-info">¡Genial eres el primero(a) en escribir!</td>
+                                <td class="alert alert-info informaciones">¡Genial eres el primero(a) en escribir!</td>
 
                             </tr>
 
 
                             <tr>
 
-                                <td class="alert alert-warning">Dale comienzo a una GRAN HISTORIA</td>
+                                <td class="alert alert-warning informaciones">Dale comienzo a una GRAN HISTORIA</td>
 
                             </tr>
                             @endif
@@ -84,7 +87,15 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <textarea class="form-control cajasGrandes" name="texto" id="texto" rows="10" cols="40" placeholder="Continua la historia"></textarea>
+                                        <textarea class="form-control cajaEscrito textJutificado" name="texto" id="texto" rows="10" cols="40" placeholder="Continua la historia"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row textCenter">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label class="negrita infoCaracteres">Caracteres minimos: 200,</label>
+                                        <label id="caracteres" class="negrita infoCaracteres"></label>
                                     </div>
                                 </div>
                             </div>

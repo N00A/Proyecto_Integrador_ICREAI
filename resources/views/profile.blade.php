@@ -25,23 +25,46 @@
                 <h3 class="negrita">Foto</h3>
                 <img width="100px" height="100px" src="{{ asset('uploads/avatars/'.$user->avatar) }}">
                 <div class="panel-body">
-                    <div class="table-container">
+                    <div class="row">
                         {{ Form::open(['route' => ['user.profile.update'], 'files' => true, 'method' => 'POST']) }}
                         <div class="row">
-                            <h4>Selecciona una foto</h4>
-                            <input type="file" name="avatar">
-                            </br>
-                            <h2 class="negrita">Datos</h2>
-                            <h4>Nombre</h4>
-                            <input type="text" name="name" id="name" class="form-control inputsm" value="{{$user->name}}">
-                            </br>
-                            <h4>Correo</h4>
-                            <input type="text" name="email" id="email" class="form-control inputsm" value="{{$user->email}}">
-                            </br>
-                            <input type="submit" value="Guardar Datos" class="btn btn-success btn-block">
-                            </br>
-                            {{ Form::close() }}
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <h4>Selecciona una foto</h4>
+                                    <span class="mi-archivo">
+                                        <input class="selectorFoto" type="file" name="avatar" id="mi-archivo">
+                                    </span>
+
+                                    <label for="mi-archivo">
+                                        <span>Seleccionar Archivo</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
+                        <h2 class="negrita">Datos</h2>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <h4>Nombre</h4>
+                                    <input type="text" name="name" id="name" class="form-control inputsm" value="{{$user->name}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <h4>Correo</h4>
+                                    <input type="text" name="email" id="email" class="form-control inputsm" value="{{$user->email}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <input type="submit" value="Guardar Datos" class="btn btn-success btn-block">
+                            </div>
+                        </div>
+                        {{ Form::close() }}
+
                     </div>
                 </div>
             </div>
@@ -49,4 +72,4 @@
     </div>
     @endsection
 </div>
-    <!-- {{ Form::submit('Update', ['name' => 'submit']) }}-->
+<!-- {{ Form::submit('Update', ['name' => 'submit']) }}-->

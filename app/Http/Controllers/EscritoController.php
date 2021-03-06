@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Escrito;
 use App\Genero;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 class EscritoController extends Controller
 {
     /**
@@ -31,6 +32,8 @@ class EscritoController extends Controller
         ->SELECT('es.id','es.texto','es.user_id','es.genero_id')
         ->where('es.genero_id', $id)
         ->paginate(10);
+
+        
 
         return view('escrito.index', compact('escrito'));
     }
@@ -64,10 +67,22 @@ class EscritoController extends Controller
                 ->where('es.genero_id', $query)
                 ->orderByDesc('es.id')
                 ->paginate(10);
+                $corte=0;
+                if($escrito!=null){
+                foreach($escrito as $escritoPeq){
 
-                return view('escrito.create', compact('genero', 'escrito'));
+                $caracteres=Str::length($escritoPeq->texto);
+                $porcentaje=$caracteres*0.9;
+                $corte=round($porcentaje);
+                break;
+                }
+            }
+               
+                
 
-                return view('escrito.create', ["genero" => $genero, "escrito" => $escrito]);
+                return view('escrito.create', compact('genero', 'escrito','corte'));
+
+                return view('escrito.create', ["genero" => $genero, "escrito" => $escrito, "corte" => $corte]);
         }
     }
 
@@ -80,7 +95,7 @@ class EscritoController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['texto' => 'required|max:1800|min:500', 'user_id' => 'required', 'genero_id' => 'required']);
+        $this->validate($request, ['texto' => 'required|min:200', 'user_id' => 'required', 'genero_id' => 'required']);
         Escrito::create($request->all());
 
         $query = $request->genero_id;
