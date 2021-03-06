@@ -3,10 +3,10 @@
 @section('title_princ','Editar Generos')
 @section('pp')
 
-<div class="row">
+<div class="mainContainer">
     <section class="content">
-        <div class="col-md-8 col-md-offset-1">
-        @if (count($errors) > 0)
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Error!</strong> Revise los campos obligatorios.<br><br>
                 <ul>
@@ -22,8 +22,8 @@
             </div>
             @endif
             <div class="panel panel-default formSeparacion">
-                <div>
-                    <div class="table-container">
+                <div class="panel-body">
+                    <div class="row">
                         <form method="POST" action="{{ route('genero.update',$genero->id) }}" role="form">
                             {{ csrf_field() }}
                             <input name="_method" type="hidden" value="PATCH">
@@ -43,14 +43,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <input type="submit" value="Actualizar" class="btn btn-success btn-block">
-                                    </br>
-                                    </br>
-                                    <a href="{{ route('genero.index') }}" class="btn btn-info btnblock">Atrás</a>
-                                </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Actualizar" class="btn btn-success sizeBtnSuccess">
+                                </br>
+                                </br>
+                                <a href="{{ route('genero.index') }}" class="btn btn-info btnblock">Atrás</a>
                             </div>
+
                         </form>
                     </div>
                 </div>

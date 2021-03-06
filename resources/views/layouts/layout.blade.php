@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
-	<title>@yield('title')</title>
+	<title id="pagActual">@yield('title')</title>
 	<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/datepicker3.css')}}" rel="stylesheet">
@@ -38,7 +38,8 @@
 									</a>
 									<div class="message-body"><small class="pull-right">3 mins ago</small>
 										<a href="#"><strong>John Doe</strong> commented on <strong>your photo</strong>.</a>
-										<br /><small class="text-muted">1:24 pm - 25/03/2015</small></div>
+										<br /><small class="text-muted">1:24 pm - 25/03/2015</small>
+									</div>
 								</div>
 							</li>
 							<li class="divider"></li>
@@ -48,7 +49,8 @@
 									</a>
 									<div class="message-body"><small class="pull-right">1 hour ago</small>
 										<a href="#">New message from <strong>Jane Doe</strong>.</a>
-										<br /><small class="text-muted">12:27 pm - 25/03/2015</small></div>
+										<br /><small class="text-muted">12:27 pm - 25/03/2015</small>
+									</div>
 								</div>
 							</li>
 							<li class="divider"></li>
@@ -65,17 +67,20 @@
 						<ul class="dropdown-menu dropdown-alerts">
 							<li><a href="#">
 									<div><em class="fa fa-envelope"></em> 1 New Message
-										<span class="pull-right text-muted small">3 mins ago</span></div>
+										<span class="pull-right text-muted small">3 mins ago</span>
+									</div>
 								</a></li>
 							<li class="divider"></li>
 							<li><a href="#">
 									<div><em class="fa fa-heart"></em> 12 New Likes
-										<span class="pull-right text-muted small">4 mins ago</span></div>
+										<span class="pull-right text-muted small">4 mins ago</span>
+									</div>
 								</a></li>
 							<li class="divider"></li>
 							<li><a href="#">
 									<div><em class="fa fa-user"></em> 5 New Followers
-										<span class="pull-right text-muted small">4 mins ago</span></div>
+										<span class="pull-right text-muted small">4 mins ago</span>
+									</div>
 								</a></li>
 						</ul>
 					</li>
@@ -101,8 +106,8 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="{{ route('inicio') }}"><em class="fa fa-home">&nbsp;</em>Inicio</a></li>
-		<!--	<li><a href="{{ route('publicaciones') }}"><em class="fa fa-folder-open">&nbsp;</em>Publicaciones</a></li>
+			<li id="focoIni"><a href="{{ route('inicio') }}"><em class="fa fa-home">&nbsp;</em>Inicio</a></li>
+			<!--	<li><a href="{{ route('publicaciones') }}"><em class="fa fa-folder-open">&nbsp;</em>Publicaciones</a></li>
 			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
 					<em class="fa fa-eye">&nbsp;</em> Genero <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -118,7 +123,7 @@
 						</a></li>
 				</ul>
 			</li>-->
-			<li><a href="{{ route('user.profile') }}"><em class="fa fa-user-circle-o">&nbsp;</em>Perfil</a></li>
+			<li id="focoPerfil"><a href="{{ route('user.profile') }}"><em class="fa fa-user-circle-o">&nbsp;</em>Perfil</a></li>
 			<li> <a class="dropdown-item fa fa-window-close" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 					{{ __('Cerrar sesión') }}
@@ -136,18 +141,18 @@
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<ol class="breadcrumb">
-				<li class="active negrita">Opciones</li>
+				<li class="negrita">Opciones</li>
 
 				<li class=""><a href="{{ route('moderador.index') }}">
-						<button class="btn btn-info">Moderar</button></a></li>
+						<button id="focoMod" class="btn btn-info">Moderar</button></a></li>
 
 				<li class=""><a href="{{ route('administrador.index') }}">
-						<button class="btn btn-info">Administrar</button></a></li>
+						<button id="focoAdmin" class="btn btn-info">Administrar</button></a></li>
 			</ol>
 		</div>
 		<!--/.row-->
-		
-		<div class="row justify-content-center mainContainer" >
+
+		<div class="row justify-content-center mainContainer">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<h1 class="page-header negrita">@yield('title_princ')</h1>
 			</div>
@@ -536,6 +541,88 @@
 				scaleFontColor: "#c5c7cc"
 			});
 		};
+	</script>
+	<script type="application/javascript">
+		jQuery('input[type=file]').change(function() {
+			var filename = jQuery(this).val().split('\\').pop();
+			var idname = jQuery(this).attr('id');
+			console.log(jQuery(this));
+			console.log(filename);
+			console.log(idname);
+			jQuery('span.' + idname).next().find('span').html(filename);
+		});
+	</script>
+	<!--<script>
+		$('.nav li').click(function(e) {
+
+			$(this).addClass('active');
+			$(this).siblings().removeClass('active');
+		});
+	</script>
+	-->
+	<script>
+		// En el onload
+		$(function() {
+			var pagina = document.getElementById("pagActual").innerHTML;
+
+			if (pagina == "Icreai_Profile") {
+
+
+				var elemento = document.getElementById("focoPerfil");
+				elemento.className += " active";
+			} else if (pagina == "Icreai_Inicio") {
+
+				var elemento = document.getElementById("focoIni");
+				elemento.className += " active";
+			} else if (pagina == "Icreai_Mod") {
+
+				var elemento = document.getElementById("focoMod");
+				elemento.className += " active";
+			} else if (pagina == "Icreai_Admin") {
+
+				var elemento = document.getElementById("focoAdmin");
+				elemento.className += " active";
+			}
+
+
+
+		});
+	</script>
+
+	<script>
+		let $texto = document.getElementById("texto")
+		let $caracteres = 0;
+		document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' TwT';
+		//El evento lo puedes reemplazar con keyup, keypress y el tiempo a tu necesidad
+		$texto.addEventListener('keypress', () => {
+
+			$caracteres += 1;
+			if ($caracteres > 0 && $caracteres <= 120) {
+				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspirate ;D';
+			} else if ($caracteres > 120 && $caracteres <= 199) {
+				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡Ya Falta poco!';
+			} else {
+				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡GENIAL!, ya puedes enviar el escrito';
+			}
+
+		})
+		$($texto).on("keyup", function() { //Supervisamos cada vez que se presione una tecla dentro.
+
+			if ($(this).val().length != $caracteres) {
+
+				$caracteres = $(this).val().length;
+
+				if ($caracteres >= 0 && $caracteres <= 120) {
+					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspirate ;D';
+				} else if ($caracteres > 120 && $caracteres <= 199) {
+					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡Ya Falta poco!';
+				} else {
+					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡GENIAL!, ya puedes enviar el escrito';
+				}
+			} 
+				
+			
+		})
 	</script>
 
 </body>

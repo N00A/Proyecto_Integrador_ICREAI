@@ -30,7 +30,7 @@
                                 <tr>
 
                                     <td>
-                                        <h4>{{$escrito->texto}}</h4>
+                                        <h4 class="textJutificado">{{$escrito->texto}}</h4>
                                     </td>
 
                                 </tr>
