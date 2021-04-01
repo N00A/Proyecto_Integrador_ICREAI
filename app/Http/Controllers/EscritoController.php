@@ -7,35 +7,43 @@ use App\Escrito;
 use App\Genero;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
+use PDF;
+
 class EscritoController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    public function index(int $id)
+    public function index(Request $request)
     {
-        /*$genero = Genero::all();
-        $escrito = Escrito::orderBy('id', 'ASC')->paginate(3);
 
-        return view('escrito.index', compact('genero', 'escrito'));
-        */
 
-        $escrito= DB::table('escritos as es')
-        ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
-        ->SELECT('es.id','es.texto','es.user_id','es.genero_id')
-        ->where('es.genero_id', $id)
-        ->paginate(10);
+        $id = $request->genero_id;
 
-        
 
-        return view('escrito.index', compact('escrito'));
+
+        $escritos = DB::table('escritos as es')
+            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+            ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
+            ->where('es.genero_id', $id)
+            ->get();
+
+
+
+
+        return view('escrito.index', compact('escritos', 'id'));
     }
 
     /**
@@ -47,42 +55,36 @@ class EscritoController extends Controller
     {
 
         if ($request) {
-            /*
-            $genero = Genero::all();
-            $escrito = Escrito::orderBy('id', 'DESC')->paginate(3);
 
-            //  dd($exquisito);
-            return view('escrito.create', compact('genero', 'escrito'));
-            */
             $query = $request->genero;
-           
+
             $genero = DB::table('generos as g')
-                ->SELECT('g.id','g.name','g.descripcion')
+                ->SELECT('g.id', 'g.name', 'g.descripcion')
                 ->where('g.id', $query)
                 ->paginate(10);
 
-                $escrito= DB::table('escritos as es')
+            $escrito = DB::table('escritos as es')
                 ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
-                ->SELECT('es.id','es.texto','es.user_id','es.genero_id')
+                ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
                 ->where('es.genero_id', $query)
                 ->orderByDesc('es.id')
                 ->paginate(10);
-                $corte=0;
-                if($escrito!=null){
-                foreach($escrito as $escritoPeq){
+            $corte = 0;
+            if ($escrito != null) {
+                foreach ($escrito as $escritoPeq) {
 
-                $caracteres=Str::length($escritoPeq->texto);
-                $porcentaje=$caracteres*0.9;
-                $corte=round($porcentaje);
-                break;
+                    $caracteres = Str::length($escritoPeq->texto);
+                    $porcentaje = $caracteres * 0.9;
+                    $corte = round($porcentaje);
+                    break;
                 }
             }
-               
-                
 
-                return view('escrito.create', compact('genero', 'escrito','corte'));
 
-                return view('escrito.create', ["genero" => $genero, "escrito" => $escrito, "corte" => $corte]);
+
+            return view('escrito.create', compact('genero', 'escrito', 'corte'));
+
+            return view('escrito.create', ["genero" => $genero, "escrito" => $escrito, "corte" => $corte]);
         }
     }
 
@@ -98,20 +100,20 @@ class EscritoController extends Controller
         $this->validate($request, ['texto' => 'required|min:200', 'user_id' => 'required', 'genero_id' => 'required']);
         Escrito::create($request->all());
 
-        $query = $request->genero_id;
+        $idGenero = $request->genero_id;
 
-        $escrito= DB::table('escritos as es')
-                ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
-                ->SELECT('es.id','es.texto','es.user_id','es.genero_id')
-                ->where('es.genero_id', $query)
-                ->paginate(10);
+        $escritos = DB::table('escritos as es')
+            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+            ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
+            ->where('es.genero_id', $idGenero)
+            ->get();
 
-               return view('escrito.index', compact('escrito'));
+        return view('escrito.index', compact('escritos', 'idGenero'));
 
-               return view('escrito.index', ["escrito" => $escrito]);
-       
-       // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
-      //return view('escrito.index', compact('escrito'));
+        return view('escrito.index', ["escritos" => $escritos, "idGenero" => $idGenero]);
+
+        // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
+
     }
 
     /**
@@ -157,5 +159,40 @@ class EscritoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function crearPDF(Request $request)
+    {
+
+        $id = $request->id_Genero;
+
+        //Con la primer variable obtenemos un formato general de fecha
+        //Con la propiedad monthName obtenemos el nombre del mes que recuperamos en la línea anterior
+        //Con la propiedad year recuperamos solo el año
+        //Con la propiedad dayName obtenemos el nombre del día de la fecha actualmente recuperada
+        //Con la propiedad day obtenemos el número de día
+        //$fecha = Carbon::now()->format('d/m/Y'); obtener fecha en formato d/m/y
+
+        $fecha  = now();
+        $mes    = $fecha->monthName;
+        $anio   = $fecha->year;
+        $dia    = $fecha->dayName;
+        $diaNumero = $fecha->day;
+        $fechaPdf = $dia . " " . $diaNumero . " de " . $mes . " de " . $anio;
+
+        $generoPdf = DB::table('generos as g')
+            ->SELECT('g.name')
+            ->where('g.id', $id)
+            ->get();
+
+        $escritoPdf = DB::table('escritos as es')
+            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+            ->SELECT('es.texto')
+            ->where('es.genero_id', $id)
+            ->get();
+
+
+        return PDF::loadView('pdf', compact('generoPdf', 'escritoPdf', 'fechaPdf'))
+            ->stream('CadaverExquisito_Icreai.pdf');
     }
 }

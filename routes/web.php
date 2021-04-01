@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return view('auth/login');
-    });
+});
 
 Route::get('/login', function () {
     return view('login');
@@ -47,31 +47,33 @@ Route::get('/autorizacion', function () {
     return view('errors.autorizacion');
 })->name('autorizacion');
 
-Route::get('/inicio','InicioController@index')->name('inicio')->middleware('age');
+Route::get('/inicio', 'InicioController@index')->name('inicio')->middleware('age');
 
-Route::resource('administrador','AdminController')->middleware('age');
+Route::get('/pdf', 'EscritoController@crearPDF')->name('pdf')->middleware('age');
 
-Route::resource('moderador','ModController')->middleware('age');
 
-Route::resource('rol','RolController')->middleware('age');
+Route::resource('administrador', 'AdminController')->middleware('age');
 
-Route::resource('escrito','EscritoController')->middleware('age');
+Route::resource('moderador', 'ModController')->middleware('age');
 
-Route::resource('genero','GeneroController')->middleware('age');
+Route::resource('rol', 'RolController')->middleware('age');
+
+Route::resource('escrito', 'EscritoController')->middleware('age');
+
+Route::resource('genero', 'GeneroController')->middleware('age');
 
 Auth::routes();
 
-Route::get('/profile','UserController@profile')->name('user.profile')->middleware('age');
+Route::get('/profile', 'UserController@profile')->name('user.profile')->middleware('age');
 
-Route::post('/profile','UserController@update_profile')->name('user.profile.update')->middleware('age');
+Route::post('/profile', 'UserController@update_profile')->name('user.profile.update')->middleware('age');
 
-Route::post('logout','Auth\LoginController@logout')->name('logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 Route::get('/email', function () {
     return view('auth.passwords.email');
 })->middleware('guest')->name('password.request');
-
 
 
 Route::post('/email', function (Request $request) {
@@ -82,8 +84,8 @@ Route::post('/email', function (Request $request) {
     );
 
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset/{token}', function ($token) {
@@ -111,7 +113,6 @@ Route::post('/reset', function (Request $request) {
     );
 
     return $status == Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
-

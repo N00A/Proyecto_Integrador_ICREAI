@@ -1,0 +1,45 @@
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 3cm 2cm 2cm;
+}
+.contenidoPdf {
+    font-size: 20px;
+    text-align: justify;
+    margin: 0cm 0cm;
+}
+
+.saltarPag {
+    page-break-after: always;
+}
+
+.headerPdf {
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 1cm;
+    background-color: black;
+    color: #30a5ff;
+    text-align: center;
+    line-height: 10px;
+}
+
+.footerPdf {
+    position: fixed;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 0.8cm;
+    background-color: black;
+    color: #30a5ff;
+    text-align: center;
+    line-height: 0.8px;
+}
+
+.textLeft{
+    text-align: left;
+}
+
+.textRight{
+    text-align: right;
+}
