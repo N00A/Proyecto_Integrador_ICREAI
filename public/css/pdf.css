@@ -29,11 +29,11 @@ body {
     bottom: 0cm;
     left: 0cm;
     right: 0cm;
-    height: 0.8cm;
+    height: 1cm;
     background-color: black;
     color: #30a5ff;
     text-align: center;
-    line-height: 0.8px;
+    line-height: 10px;
 }
 
 .textLeft{
@@ -42,4 +42,9 @@ body {
 
 .textRight{
     text-align: right;
+}
+
+.break-word {
+    word-wrap: break-word;
+    height: auto;
 }

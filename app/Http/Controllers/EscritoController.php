@@ -30,7 +30,7 @@ class EscritoController extends Controller
     {
 
 
-        $id = $request->genero_id;
+        $id = $request->idGenero;
 
 
 
@@ -108,10 +108,10 @@ class EscritoController extends Controller
             ->where('es.genero_id', $idGenero)
             ->get();
 
-        return view('escrito.index', compact('escritos', 'idGenero'));
 
-        return view('escrito.index', ["escritos" => $escritos, "idGenero" => $idGenero]);
+        return redirect()->route('escrito.index', compact('escritos', 'idGenero'));
 
+        //return view('escrito.index', compact('escritos', 'idGenero'));
         // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
 
     }

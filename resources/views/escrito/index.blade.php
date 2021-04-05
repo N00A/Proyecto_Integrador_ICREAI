@@ -1,10 +1,6 @@
 @extends('layouts.layout')
 @section('pp')
 
-<?php
-$id = $_POST['genero_id'];
-
-?>
 <div class="go-top-container">
     <div class="go-top-button">
         <i class="fa fa-arrow-circle-up"></i>
@@ -31,7 +27,7 @@ $id = $_POST['genero_id'];
 
 
 
-
+                       
 
                         @foreach($escritos as $escrito)
 
@@ -54,7 +50,7 @@ $id = $_POST['genero_id'];
                     <br>
                     <br>
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <input type="hidden" name="id_Genero" id="id_Genero" class="form-control inputsm" value=<?php echo $id; ?>>
+                        <input type="hidden" name="id_Genero" id="id_Genero" class="form-control inputsm" value="{{$id}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="btn-group">

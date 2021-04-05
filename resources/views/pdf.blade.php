@@ -27,7 +27,7 @@
 
     @endif
     <hr>
-    <div class="contenidoPdf">
+    <div class="contenidoPdf break-word">
         @if($escritoPdf->count())
 
         @foreach($escritoPdf as $escrito)

@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth/login');
 })->name('login');
 /*
 Route::get('/inicio', function () {
