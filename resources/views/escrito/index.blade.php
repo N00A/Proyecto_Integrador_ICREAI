@@ -65,7 +65,7 @@
 
                         @if($escritos->count())
 
-                        <h3>¡Comenzemos a LEER!</h3><br>
+                        <h3>¡Conversa con los demas escritores!</h3><br>
 
                         @foreach($escritos as $escrito)
 
