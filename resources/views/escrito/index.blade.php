@@ -63,13 +63,13 @@
                     <input name="_method" type="hidden" value="PATCH">
                     <div class="form-group break-word">
 
-                        @if($escritos->count())
+                        @if($foro->count())
 
                         <h3>¡Conversa con los demas escritores!</h3><br>
 
-                        @foreach($escritos as $escrito)
+                        @foreach($foro as $foro)
 
-                        <h4 class="textJutificado">{{$escrito->texto}}</h4>
+                        <h4 class="textJutificado">{{$foro->contenido}}</h4>
 
                         @endforeach
 

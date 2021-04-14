@@ -33,7 +33,7 @@ class ForoController extends Controller
 
 
 
-        $foros = DB::table('foro as fo')
+        $foro = DB::table('foro as fo')
             ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
             ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id')
             ->where('fo.genero_id', $id)
@@ -62,7 +62,7 @@ class ForoController extends Controller
                 ->where('g.id', $query)
                 ->paginate(10);
 
-            $escrito = DB::table('foro as fo')
+            $foro = DB::table('foro as fo')
                 ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
                 ->SELECT('fo.id', 'fo.descripcion','es.genero_id')
                 ->where('fo.genero_id', $query)
