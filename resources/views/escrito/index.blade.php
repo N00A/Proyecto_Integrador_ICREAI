@@ -25,18 +25,9 @@
 
                         <h3>¡Comenzemos a LEER!</h3><br>
 
-
-
-                       
-
                         @foreach($escritos as $escrito)
 
-
-
                         <h4 class="textJutificado">{{$escrito->texto}}</h4>
-
-
-
 
                         @endforeach
 
@@ -64,8 +55,41 @@
                         </div>
                     </div>
                     {!!Form::close()!!}
+                    <div>
+                    <div class="panel panel-default">
+                <div class="panel-body">
+                    {!!Form::open(array('url'=>'/pdf','method'=>'GET','target'=>'_blank','autocomplete'=>'off'))!!}
+
+                    <input name="_method" type="hidden" value="PATCH">
+                    <div class="form-group break-word">
+
+                        @if($escritos->count())
+
+                        <h3>¡Comenzemos a LEER!</h3><br>
+
+                        @foreach($escritos as $escrito)
+
+                        <h4 class="textJutificado">{{$escrito->texto}}</h4>
+
+                        @endforeach
+
+                        @else
+
+                        <h3 colspan="8"> SORRY, No hay registros todavia TwT!!</h3>
+
+                        @endif
+
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <input type="hidden" name="id_Genero" id="id_Genero" class="form-control inputsm" value="{{$id}}">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
