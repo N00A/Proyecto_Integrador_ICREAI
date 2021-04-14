@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Escrito;
+use App\Foro;
 use App\Genero;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -42,7 +42,7 @@ class ForoController extends Controller
 
 
 
-        return view('escrito.index', compact('escritos', 'id'));
+        return view('escrito.index', compact('foro', 'id'));
     }
 
     /**
