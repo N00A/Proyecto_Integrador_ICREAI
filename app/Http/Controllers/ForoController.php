@@ -27,21 +27,12 @@ class ForoController extends Controller
 
     public function index(Request $request)
     {
-
-
         $id = $request->idGenero;
-
-
-
         $foro = DB::table('foro as fo')
             ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
             ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id')
             ->where('fo.genero_id', $id)
             ->get();
-
-
-
-
         return view('escrito.index', compact('foro', 'id'));
     }
 

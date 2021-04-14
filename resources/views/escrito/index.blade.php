@@ -67,9 +67,9 @@
 
                         <h3>¡Conversa con los demas escritores!</h3><br>
 
-                        @foreach($foro as $foro)
+                        @foreach($foro as $foros)
 
-                        <h4 class="textJutificado">{{$foro->contenido}}</h4>
+                        <h4 class="textJutificado">{{$foros->contenido}}</h4>
 
                         @endforeach
 
