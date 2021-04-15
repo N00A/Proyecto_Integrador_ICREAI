@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Escrito extends Model
+class Foro extends Model
 {
     
-    protected $fillable = ['id', 'texto', 'user_id', 'genero_id'];
+    protected $fillable = ['id', 'descripcion', 'genero_id', 'genero_id'];
 
     public function users()
     {
