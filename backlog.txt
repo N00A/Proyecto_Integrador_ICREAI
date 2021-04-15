@@ -1,0 +1,97 @@
+commit f2c2ee0131ff2be2898237ffa37ad0cb242a3aa3
+Author: N00A <johnj262000@hotmail.com>
+Date:   Fri Mar 5 22:10:04 2021 -0500
+
+    #update: Se modifica el arhcivo Procfile
+
+commit ae081e99a13c2842100ca447ddadb829862da645
+Author: N00A <johnj262000@hotmail.com>
+Date:   Fri Mar 5 22:04:56 2021 -0500
+
+    #add: Se agrega archivo Procfile
+
+commit 8255fbb849b7f5dfa39e3cd6d2f24924cba00d23
+Merge: 23caaef a8ec279
+Author: N00A <johnj262000@hotmail.com>
+Date:   Fri Mar 5 22:02:18 2021 -0500
+
+    Merge entre linea base y linea maestra.
+
+commit a8ec2791133117b5cea6027b873868ab2dcbfc9e
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Fri Mar 5 21:24:41 2021 -0500
+
+    1 mejora responsive telefonos, 2 mejora boton de seleccionar foto, 3 Se cambia minimo de caracteres a 200 y ya no hay limite de escritura, 4 Se agrega contador de caracteres, 5 Se corrige Focus de opciones laterales
+
+commit 23caaef626d1ca0a9703b09c361740a9dbeaab0d
+Author: JohnSP <63080507+N00A@users.noreply.github.com>
+Date:   Wed Mar 3 17:41:25 2021 -0500
+
+    Rename procfile to Procfile
+
+commit 40dd94ac0d47aced0fa7ed197f24eaaee713251b
+Author: N00A <johnj262000@hotmail.com>
+Date:   Wed Mar 3 17:39:19 2021 -0500
+
+     Commit prueba
+
+commit ee348888825b1eb37789f59e5a1e0e393819733a
+Merge: f6babfb 30e0dab
+Author: N00A <johnj262000@hotmail.com>
+Date:   Wed Mar 3 12:04:38 2021 -0500
+
+    Merge branch 'master' of https://github.com/N00A/Proyecto_Integrador_ICREAI
+
+commit f6babfba3963551c48b185ee809847d44cbe34b6
+Author: N00A <johnj262000@hotmail.com>
+Date:   Wed Mar 3 11:58:23 2021 -0500
+
+    Deployment with heroku
+
+commit 30e0dabb12c044cd5a605fc088e70296a7925c02
+Author: N00A <johnj262000@hotmail.com>
+Date:   Tue Mar 2 20:58:11 2021 -0500
+
+    Third commit
+
+commit 92ffca6421ce3f02515d58e6c7bdee2641cd6cf0
+Author: N00A <johnj262000@hotmail.com>
+Date:   Tue Mar 2 20:55:17 2021 -0500
+
+    Second commit
+
+commit 2deb6ca1c043772b8148483a802258e82bbc0067
+Author: N00A <johnj262000@hotmail.com>
+Date:   Sun Feb 28 17:39:49 2021 -0500
+
+    Avatar de john soto
+
+commit 7514c73edac5e7e0ddf1a83626912a130a21761c
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Sat Feb 27 17:03:41 2021 -0500
+
+    v.210227
+
+commit 3f645a392830276dc32a0b1185c4ae1f972562d9
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Mon Jun 8 00:43:37 2020 -0500
+
+    Textos por Genero
+
+commit eeef5d535a79c80bb6f876259bd6fcb0dff7fb8a
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Fri May 15 14:08:34 2020 -0500
+
+    Bloqueo segun estado
+
+commit 0042132bbd20c0d4737f42ca34d3a088095e7236
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Tue May 12 23:03:35 2020 -0500
+
+    Gestion basica users
+
+commit a57fff796d5209c4a7fa8d128004c18b48072af5
+Author: BrayanAlexisPerdomo <perdomoalexis0@gmail.com>
+Date:   Sun Apr 26 10:21:11 2020 -0500
+
+    Primer commit icreai
