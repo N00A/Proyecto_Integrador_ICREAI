@@ -56,10 +56,8 @@
                     </div>
                     {!!Form::close()!!}
                     <div>
-                    <div class="panel panel-default">
+                    <!--<div class="panel panel-default">
                 <div class="panel-body">
-                    {!!Form::open(array('url'=>'/pdf','method'=>'GET','target'=>'_blank','autocomplete'=>'off'))!!}
-
                     <input name="_method" type="hidden" value="PATCH">
                     <div class="form-group break-word">
 
@@ -86,10 +84,9 @@
                         <input type="hidden" name="id_Genero" id="id_Genero" class="form-control inputsm" value="{{$id}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                    </div>
-                </div>
+                    </div> 
+                </div>-->
             </div>
-            
         </div>
     </div>
 </div>
