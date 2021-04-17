@@ -8,6 +8,7 @@ use App\Genero;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Foro;
 use PDF;
 
 class EscritoController extends Controller
@@ -40,10 +41,15 @@ class EscritoController extends Controller
             ->where('es.genero_id', $id)
             ->get();
 
+        $foro = DB::table('foro as fo')
+            ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
+            ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id')
+            ->where('fo.genero_id', $id)
+            ->get();
 
 
 
-        return view('escrito.index', compact('escritos', 'id'));
+        return view('escrito.index', compact('escritos', 'id', 'foro'));
     }
 
     /**
@@ -80,13 +86,18 @@ class EscritoController extends Controller
                 }
             }
 
-
-
+    
             return view('escrito.create', compact('genero', 'escrito', 'corte'));
 
             return view('escrito.create', ["genero" => $genero, "escrito" => $escrito, "corte" => $corte]);
         }
+
     }
+    public function createForo(Request $request)
+    {
+        }
+    
+    
 
     /**
      * Store a newly created resource in storage.
@@ -110,6 +121,23 @@ class EscritoController extends Controller
 
 
         return redirect()->route('escrito.index', compact('escritos', 'idGenero'));
+
+        //return view('escrito.index', compact('escritos', 'idGenero'));
+        // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
+
+    }
+
+    public function storeForo(Request $request)
+    {
+
+        $this->validate($request, ['contenido' => 'required', 'idGenero' => 'required']);
+        Foro::create($request->all());
+
+        //$idGenero = $request->genero_id;
+
+        
+
+        return redirect()->route('escrito.index');
 
         //return view('escrito.index', compact('escritos', 'idGenero'));
         // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');

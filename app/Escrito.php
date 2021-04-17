@@ -15,11 +15,16 @@ class Escrito extends Model
             ->belongsTo('App\User')
             ->withTimestamps();
     }
-
     public function genero()
     {
         return $this
             ->belongsTo('App\Genero')
+            ->withTimestamps();
+    }
+    public function foro()
+    {
+        return $this
+            ->belongsTo('App\Foro')
             ->withTimestamps();
     }
 }
