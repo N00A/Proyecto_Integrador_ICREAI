@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Escrito;
-use App\Genero;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
+use App\Escrito;
 use App\Foro;
 use PDF;
+use App\Genero;
+use Carbon\Carbon;
 
 class EscritoController extends Controller
 {
@@ -30,26 +30,21 @@ class EscritoController extends Controller
     public function index(Request $request)
     {
 
-
-        $id = $request->idGenero;
-
-
+        $genero_id = $request->genero_id;
 
         $escritos = DB::table('escritos as es')
             ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
             ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
-            ->where('es.genero_id', $id)
+            ->where('es.genero_id', $genero_id)
             ->get();
 
-        $foro = DB::table('foro as fo')
+        $foro = DB::table('foros as fo')
             ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
             ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id')
-            ->where('fo.genero_id', $id)
+            ->where('fo.genero_id', $genero_id)
             ->get();
 
-
-
-        return view('escrito.index', compact('escritos', 'id', 'foro'));
+        return view('escrito.index', compact('escritos', 'genero_id', 'foro'));
     }
 
     /**
@@ -62,17 +57,17 @@ class EscritoController extends Controller
 
         if ($request) {
 
-            $query = $request->genero;
+            $genero_id = $request->genero;
 
             $genero = DB::table('generos as g')
                 ->SELECT('g.id', 'g.name', 'g.descripcion')
-                ->where('g.id', $query)
+                ->where('g.id', $genero_id)
                 ->paginate(10);
 
             $escrito = DB::table('escritos as es')
                 ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
                 ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
-                ->where('es.genero_id', $query)
+                ->where('es.genero_id', $genero_id)
                 ->orderByDesc('es.id')
                 ->paginate(10);
             $corte = 0;
@@ -85,11 +80,8 @@ class EscritoController extends Controller
                     break;
                 }
             }
-
     
             return view('escrito.create', compact('genero', 'escrito', 'corte'));
-
-            return view('escrito.create', ["genero" => $genero, "escrito" => $escrito, "corte" => $corte]);
         }
 
     }
@@ -97,8 +89,6 @@ class EscritoController extends Controller
     {
         }
     
-    
-
     /**
      * Store a newly created resource in storage.
      *
@@ -107,40 +97,27 @@ class EscritoController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $this->validate($request, ['texto' => 'required|min:200', 'user_id' => 'required', 'genero_id' => 'required']);
+
         Escrito::create($request->all());
 
-        $idGenero = $request->genero_id;
+        $genero_id = $request->genero_id;
 
-        $escritos = DB::table('escritos as es')
-            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
-            ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
-            ->where('es.genero_id', $idGenero)
-            ->get();
-
-
-        return redirect()->route('escrito.index', compact('escritos', 'idGenero'));
-
-        //return view('escrito.index', compact('escritos', 'idGenero'));
-        // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
+        return redirect()->route('escrito.index', compact('genero_id'));
 
     }
 
     public function storeForo(Request $request)
     {
+  
+        $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required']);
 
-        $this->validate($request, ['contenido' => 'required', 'idGenero' => 'required']);
         Foro::create($request->all());
 
-        //$idGenero = $request->genero_id;
+        $genero_id = $request->genero_id;
 
-        
-
-        return redirect()->route('escrito.index');
-
-        //return view('escrito.index', compact('escritos', 'idGenero'));
-        // return redirect()->route('escrito.index')->with('success', 'Registro creado satisfactoriamente');
+        return redirect()->route('escrito.index', compact('genero_id'));
 
     }
 
@@ -192,7 +169,7 @@ class EscritoController extends Controller
     public function crearPDF(Request $request)
     {
 
-        $id = $request->id_Genero;
+        $genero_id = $request->genero_id_pdf;
 
         //Con la primer variable obtenemos un formato general de fecha
         //Con la propiedad monthName obtenemos el nombre del mes que recuperamos en la línea anterior
@@ -210,15 +187,14 @@ class EscritoController extends Controller
 
         $generoPdf = DB::table('generos as g')
             ->SELECT('g.name')
-            ->where('g.id', $id)
+            ->where('g.id', $genero_id)
             ->get();
 
         $escritoPdf = DB::table('escritos as es')
             ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
             ->SELECT('es.texto')
-            ->where('es.genero_id', $id)
+            ->where('es.genero_id', $genero_id)
             ->get();
-
 
         return PDF::loadView('pdf', compact('generoPdf', 'escritoPdf', 'fechaPdf'))
             ->stream('CadaverExquisito_Icreai.pdf');

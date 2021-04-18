@@ -22,10 +22,8 @@ class RolController extends Controller
     public function index(Request $request)
     {
      
-     /*   $roles = RoleUser::all();
-        return view('adminRol.index')->with('roles', $roles);
-*/
         $request->User()->authorizeRoles('admin');
+
         if ($request) {
             $query = trim($request->get('searchText'));
             $roles = DB::table('role_user')
@@ -36,6 +34,7 @@ class RolController extends Controller
             ->orderBy('users.id', 'asc')
             ->paginate(5);
             return view('adminRol.index', ["roles" => $roles, "searchText" => $query]);
+            
         }
     }
 

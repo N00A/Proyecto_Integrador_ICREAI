@@ -22,7 +22,9 @@ class ModController extends Controller
 
     public function index(Request $request)
     {
+
         $request->User()->authorizeRoles(['admin', 'mod']);
+
         if ($request) {
             $query = trim($request->get('searchText'));
             $users = DB::table('users')
@@ -33,6 +35,7 @@ class ModController extends Controller
                 ->orderBy('users.id', 'asc')
                 ->paginate(5);
             return view('mod.index', ["users" => $users, "searchText" => $query]);
+            
         }
     }
     

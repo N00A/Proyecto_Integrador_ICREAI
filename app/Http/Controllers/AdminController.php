@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -25,7 +25,9 @@ class AdminController extends Controller
     {
         
         $request->User()->authorizeRoles('admin');
+
         if ($request) {
+
             $query = trim($request->get('searchText'));
             $users = DB::table('users')
                 ->where('email', 'LIKE', '%' . $query . '%')
@@ -33,6 +35,7 @@ class AdminController extends Controller
                 ->orderBy('id', 'asc')
                 ->paginate(5);
             return view('adminUser.index', ["users" => $users, "searchText" => $query]);
+
         }
     }
 

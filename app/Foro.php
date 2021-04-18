@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Escrito extends Model
+class Foro extends Model
 {
     
     protected $fillable = ['id', 'contenido', 'genero_id'];
@@ -12,7 +12,7 @@ class Escrito extends Model
     public function escrito()
     {
         return $this
-            ->hasMany('App\Escrito')
+            ->belongsTo('App\Escrito')
             ->withTimestamps();
     }
 }

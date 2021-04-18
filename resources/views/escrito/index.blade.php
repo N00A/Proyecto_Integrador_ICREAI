@@ -41,7 +41,7 @@
                     <br>
                     <br>
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <input type="hidden" name="id_Genero" id="id_Genero" class="form-control inputsm" value="{{$id}}">
+                        <input type="hidden" name="genero_id_pdf" id="genero_id_pdf" class="form-control inputsm" value="{{$genero_id}}">
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="btn-group">
@@ -53,15 +53,15 @@
                             <a style="width: 138px;" href="{{ route('inicio') }}" class="btn btn-info negrita">Volver al inicio</a>
                         </div>
                     </div>
-                    
+
                     {!!Form::close()!!}
                     <br>
                     <br>
                     <div class="form-group">
-                    @if($foro->count())
+                        @if($foro->count())
 
                         <h3>¡Conversa con otros escritores!</h3><br>
-
+                        <h3 colspan="8" class="negrita">Foro</h3>
                         @foreach($foro as $comentario)
 
                         <h4 class="textJutificado">{{$comentario->contenido}}</h4>
@@ -70,29 +70,35 @@
 
                         @else
 
-                        <h3 colspan="8"> SORRY, No hay registros todavia TwT!!</h3>
+                        <h3 colspan="8">¡No hay Comentarios todavia!</h3>
 
                         @endif
                     </div>
                     <div class="form-group">
-                        {!!Form::open(array('url'=>'/escrito','method'=>'GET','target'=>'_blank','autocomplete'=>'off'))!!}
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <input type="hidden" name="idGenero" id="idGenero" class="form-control inputsm" value="{{$id}}">
-                    </div>
+
+                        {!!Form::open(array('url'=>'/foro','method'=>'POST','target'=>'_self','autocomplete'=>'off'))!!}
+
                         <div class="col-xs-12 col-sm-12 col-md-12">
-                        <input type="text" name="contenido" id="contenido" class="form-control inputsm" value="" placeholder="Habla aqui con otros escritores">
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-success negrita">
-                                Enviar
-                            </button>
+
+                            <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero_id}}">
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+
+
+                            <div class="form-group">
+                                <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Habla aquí con otros escritores">
+                            </div>
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success negrita">
+                                    Enviar
+                                </button>
+                            </div>
                         </div>
                         {!!Form::close()!!}
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

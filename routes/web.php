@@ -51,7 +51,7 @@ Route::get('/inicio', 'InicioController@index')->name('inicio')->middleware('age
 
 Route::get('/pdf', 'EscritoController@crearPDF')->name('pdf')->middleware('age');
 
-Route::get('/escrito', 'EscritoController@storeForo')->name('pdf')->middleware('age');
+Route::post('/foro', 'EscritoController@storeForo')->name('escritoForo')->middleware('age');
 
 Route::resource('administrador', 'AdminController')->middleware('age');
 

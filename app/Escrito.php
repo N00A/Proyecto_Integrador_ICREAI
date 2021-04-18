@@ -24,7 +24,7 @@ class Escrito extends Model
     public function foro()
     {
         return $this
-            ->belongsTo('App\Foro')
+            ->hasMany('App\Foro')
             ->withTimestamps();
     }
 }
