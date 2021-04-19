@@ -1,0 +1,19 @@
+.foro{
+    height:300px;
+		background-color:#d69de0;
+		margin-bottom:4%;
+		overflow:auto;
+		padding:15px;
+}
+
+.foro-style{
+    
+    background-color: #c616e469;
+		color: white;
+		border-radius: 5px;
+		padding: 5px;
+		margin-bottom: 3%;
+        word-wrap: break-word;
+        
+}
+

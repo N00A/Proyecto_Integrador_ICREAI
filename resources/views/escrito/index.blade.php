@@ -6,7 +6,7 @@
         <i class="fa fa-arrow-circle-up"></i>
     </div>
 </div>
-
+<link href="{{asset('css/styleForo.css')}}" rel="stylesheet">
 <div class="mainContainer">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -38,8 +38,6 @@
                         @endif
 
                     </div>
-                    <br>
-                    <br>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <input type="hidden" name="genero_id_pdf" id="genero_id_pdf" class="form-control inputsm" value="{{$genero_id}}">
                     </div>
@@ -57,17 +55,23 @@
                     {!!Form::close()!!}
                     <br>
                     <br>
-                    <div class="form-group">
+                    <h3 style="color:blacky">¡Conversa con otros escritores!</h3><br>
+                    <div class="foro">
                         @if($foro->count())
-
-                        <h3>¡Conversa con otros escritores!</h3><br>
+                        <div class="foro_title">
+                        
+                        
                         <h3 colspan="8" class="negrita">Foro</h3>
+                        </div>
+                        <br>
+                        
                         @foreach($foro as $comentario)
-
+                        <div class="foro-style">
                         <h4 class="textJutificado">{{$comentario->contenido}}</h4>
-
+                        <h5 class="textJutificado">{{$comentario->created_at}}</h5>
+                         </div>
                         @endforeach
-
+                       
                         @else
 
                         <h3 colspan="8">¡No hay Comentarios todavia!</h3>
@@ -78,15 +82,17 @@
 
                         {!!Form::open(array('url'=>'/foro','method'=>'POST','target'=>'_self','autocomplete'=>'off'))!!}
 
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-
+                        <div class="col-xs-12 col-sm-12 col-md-12">                            
                             <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero_id}}">
+                            <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
 
 
                             <div class="form-group">
-                                <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Habla aquí con otros escritores">
+                                <div class="foro-style">
+                                 <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Habla aquí con otros escritores">
+                                </div>
                             </div>
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-success negrita">

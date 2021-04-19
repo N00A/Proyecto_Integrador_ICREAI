@@ -31,6 +31,7 @@ class EscritoController extends Controller
     {
 
         $genero_id = $request->genero_id;
+        $user_id = $request->user_id;
 
         $escritos = DB::table('escritos as es')
             ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
@@ -40,7 +41,7 @@ class EscritoController extends Controller
 
         $foro = DB::table('foros as fo')
             ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
-            ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id')
+            ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id', 'fo.user_id','fo.created_at')
             ->where('fo.genero_id', $genero_id)
             ->get();
 
@@ -111,7 +112,7 @@ class EscritoController extends Controller
     public function storeForo(Request $request)
     {
   
-        $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required']);
+        $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required', 'user_id' => 'required']);
 
         Foro::create($request->all());
 

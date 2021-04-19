@@ -17,7 +17,8 @@ class CreateGeneroTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('descripcion',1800);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -20,7 +20,8 @@ class CreateEscritoTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('genero_id')->unsigned();
             $table->foreign('genero_id')->references('id')->on('generos')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
