@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Escrito;
-use App\Foro;
+use App\Mensaje;
 use PDF;
 use App\Genero;
 use Carbon\Carbon;
@@ -39,13 +39,13 @@ class EscritoController extends Controller
             ->where('es.genero_id', $genero_id)
             ->get();
 
-        $foro = DB::table('foros as fo')
-            ->join('generos as ge', 'ge.id', '=', 'fo.genero_id')
-            ->SELECT('fo.id', 'fo.contenido', 'fo.genero_id', 'fo.user_id','fo.created_at')
-            ->where('fo.genero_id', $genero_id)
+        $mensaje = DB::table('mensajes as me')
+            ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
+            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id','me.created_at')
+            ->where('me.genero_id', $genero_id)
             ->get();
 
-        return view('escrito.index', compact('escritos', 'genero_id', 'foro'));
+        return view('escrito.index', compact('escritos', 'genero_id', 'mensaje'));
     }
 
     /**
@@ -86,7 +86,7 @@ class EscritoController extends Controller
         }
 
     }
-    public function createForo(Request $request)
+    public function createMensaje(Request $request)
     {
         }
     
@@ -109,12 +109,12 @@ class EscritoController extends Controller
 
     }
 
-    public function storeForo(Request $request)
+    public function storeMensaje(Request $request)
     {
   
         $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required', 'user_id' => 'required']);
 
-        Foro::create($request->all());
+        Mensaje::create($request->all());
 
         $genero_id = $request->genero_id;
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForosTable extends Migration
+class CreateMensajesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateForosTable extends Migration
      */
     public function up()
     {
-        Schema::create('foros', function (Blueprint $table) {
+        Schema::create('mensajes', function (Blueprint $table) {
             $table->bigincrements('id');
             $table->string('contenido',1800);
             $table->integer('genero_id')->unsigned();
@@ -32,6 +32,6 @@ class CreateForosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foro');
+        Schema::dropIfExists('mensaje');
     }
 }

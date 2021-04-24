@@ -1,14 +1,14 @@
-.foro{
+.mensaje{
     height:300px;
-		background-color:#d69de0;
+		background-color:#83d5ee;
 		margin-bottom:4%;
 		overflow:auto;
 		padding:15px;
 }
 
-.foro-style{
+.mensaje-style{
     
-    background-color: #c616e469;
+    background-color: #5ac0de;
 		color: white;
 		border-radius: 5px;
 		padding: 5px;

@@ -21,10 +21,10 @@ class Escrito extends Model
             ->belongsTo('App\Genero')
             ->withTimestamps();
     }
-    public function foro()
+    public function mensaje()
     {
         return $this
-            ->hasMany('App\Foro')
+            ->hasMany('App\Mensaje')
             ->withTimestamps();
     }
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Foro extends Model
+class Mensaje extends Model
 {
     
     protected $fillable = ['id', 'contenido', 'genero_id','user_id', 'created_at'];

@@ -6,7 +6,7 @@
         <i class="fa fa-arrow-circle-up"></i>
     </div>
 </div>
-<link href="{{asset('css/styleForo.css')}}" rel="stylesheet">
+<link href="{{asset('css/styleMensaje.css')}}" rel="stylesheet">
 <div class="mainContainer">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,19 +56,19 @@
                     <br>
                     <br>
                     <h3 style="color:blacky">¡Conversa con otros escritores!</h3><br>
-                    <div class="foro">
-                        @if($foro->count())
-                        <div class="foro_title">
+                    <div class="mensaje">
+                        @if($mensaje->count())
+                        <div class="mensaje_title">
                         
                         
-                        <h3 colspan="8" class="negrita">Foro</h3>
+                        <h3 colspan="8" class="negrita">Mensaje</h3>
                         </div>
                         <br>
                         
-                        @foreach($foro as $comentario)
-                        <div class="foro-style">
+                        @foreach($mensaje as $comentario)
+                        <div class="mensaje-style">
                         <h4 class="textJutificado">{{$comentario->contenido}}</h4>
-                        <h5 class="textJutificado">{{$comentario->created_at}}</h5>
+                        <h5 class="textJutificado negrita">{{$comentario->created_at}}</h5>
                          </div>
                         @endforeach
                        
@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-group">
 
-                        {!!Form::open(array('url'=>'/foro','method'=>'POST','target'=>'_self','autocomplete'=>'off'))!!}
+                        {!!Form::open(array('url'=>'/mensaje','method'=>'POST','target'=>'_self','autocomplete'=>'off'))!!}
 
                         <div class="col-xs-12 col-sm-12 col-md-12">                            
                             <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero_id}}">
@@ -90,7 +90,7 @@
 
 
                             <div class="form-group">
-                                <div class="foro-style">
+                                <div class="mensaje-style">
                                  <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Habla aquí con otros escritores">
                                 </div>
                             </div>
