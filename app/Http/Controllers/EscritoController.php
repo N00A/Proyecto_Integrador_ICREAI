@@ -31,7 +31,7 @@ class EscritoController extends Controller
     {
 
         $genero_id = $request->genero_id;
-        $user_id = $request->user_id;
+
 
         $escritos = DB::table('escritos as es')
             ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
@@ -41,7 +41,7 @@ class EscritoController extends Controller
 
         $mensaje = DB::table('mensajes as me')
             ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
-            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id','me.created_at')
+            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at')
             ->where('me.genero_id', $genero_id)
             ->get();
 
@@ -81,15 +81,29 @@ class EscritoController extends Controller
                     break;
                 }
             }
-    
-            return view('escrito.create', compact('genero', 'escrito', 'corte'));
-        }
 
+            $user_id = $request->user_id;
+
+            $ultimoId = DB::table('escritos as es')
+                ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+                ->SELECT('es.user_id')
+                ->where('es.genero_id', $genero_id)
+                ->orderByDesc('es.created_at')
+                ->paginate(1);
+            $ultId = 0;
+            if ($ultimoId != null) {
+                foreach ($ultimoId as $id) {
+                    $ultId = $id->user_id;
+                }
+            }
+
+            return view('escrito.create', compact('genero', 'escrito', 'corte', 'user_id', 'ultId'));
+        }
     }
     public function createMensaje(Request $request)
     {
-        }
-    
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -98,7 +112,7 @@ class EscritoController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $this->validate($request, ['texto' => 'required|min:200', 'user_id' => 'required', 'genero_id' => 'required']);
 
         Escrito::create($request->all());
@@ -106,12 +120,11 @@ class EscritoController extends Controller
         $genero_id = $request->genero_id;
 
         return redirect()->route('escrito.index', compact('genero_id'));
-
     }
 
     public function storeMensaje(Request $request)
     {
-  
+
         $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required', 'user_id' => 'required']);
 
         Mensaje::create($request->all());
@@ -119,7 +132,6 @@ class EscritoController extends Controller
         $genero_id = $request->genero_id;
 
         return redirect()->route('escrito.index', compact('genero_id'));
-
     }
 
     /**

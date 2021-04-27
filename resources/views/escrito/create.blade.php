@@ -3,6 +3,7 @@
 <div class="row">
     <section class="content">
         <div class="col-md-8 col-md-offset-1">
+            @if($user_id!=$ultId)
             @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Error!</strong> Revise los campos obligatorios.<br><br>
@@ -20,8 +21,8 @@
             @endif
 
             <div class="panel panel-default formSeparacion">
-                <div>
 
+                <div>
                     <table id="mytable" class="table table-bordred">
                         <thead>
                             <th>
@@ -82,7 +83,7 @@
                 </div>
                 <div>
                     <div class="table-container">
-                        <form method="POST" action="{{ route('escrito.store') }}" role="form">
+                        <form method="POST" action="{{ route('escrito.store') }}" role="form" id="formA">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -124,7 +125,22 @@
                         </form>
                     </div>
                 </div>
+                @else
+                <div class="textCenter">
+                    <h3 colspan="8" class="negrita">¡LO SENTIMOS! aún no puedes volver a escribir</h3>
+                    <P>Espera hasta que otra persona continue la historia</P>
+                    @foreach($genero as $genero)
+                    @endforeach
+                    <form method="GET" action="{{ route('escrito.index') }}" role="form" id="formB">
+
+
+                        <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero->id}}">
+                        <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-success btn-block">
+
+                    </form>
+                </div>
             </div>
+            @endif
         </div>
     </section>
 </div>

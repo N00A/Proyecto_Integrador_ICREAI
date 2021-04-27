@@ -29,6 +29,7 @@
             <option value="{{$gne->id}}">{{ $gne->name }}</option>
             @endforeach
         </select>
+        <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-success form-control btnComenzar negrita">
