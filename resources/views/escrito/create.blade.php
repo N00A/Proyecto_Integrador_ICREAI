@@ -95,7 +95,7 @@
                             <div class="row textCenter">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label class="negrita infoCaracteres">Caracteres minimos: 200,</label>
+                                        <label class="negrita infoCaracteres">Caracteres minimos: 100,</label>
                                         <label id="caracteres" class="negrita infoCaracteres"></label>
                                     </div>
                                 </div>

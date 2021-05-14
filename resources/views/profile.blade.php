@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <h4>Nombre</h4>
+                                    <h4>Nombre de Usuario</h4>
                                     <input type="text" name="name" id="name" class="form-control inputsm" value="{{$user->name}}">
                                 </div>
                             </div>

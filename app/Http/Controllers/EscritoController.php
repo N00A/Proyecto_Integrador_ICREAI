@@ -41,7 +41,8 @@ class EscritoController extends Controller
 
         $mensaje = DB::table('mensajes as me')
             ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
-            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at')
+            ->join('users as u', 'u.id', '=', 'me.user_id')
+            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at','u.avatar','u.name')
             ->where('me.genero_id', $genero_id)
             ->get();
 
@@ -113,7 +114,7 @@ class EscritoController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, ['texto' => 'required|min:200', 'user_id' => 'required', 'genero_id' => 'required']);
+        $this->validate($request, ['texto' => 'required|min:100', 'user_id' => 'required', 'genero_id' => 'required']);
 
         Escrito::create($request->all());
 
@@ -125,7 +126,7 @@ class EscritoController extends Controller
     public function storeMensaje(Request $request)
     {
 
-        $this->validate($request, ['contenido' => 'required|max:1800', 'genero_id' => 'required', 'user_id' => 'required']);
+        $this->validate($request, ['contenido' => 'required', 'genero_id' => 'required', 'user_id' => 'required']);
 
         Mensaje::create($request->all());
 

@@ -55,18 +55,20 @@
                     {!!Form::close()!!}
                     <br>
                     <br>
-                    <h3 style="color:blacky">¡Conversa con otros escritores!</h3><br>
+                    <h3 style="color:blacky">¡Conversa con otros!</h3><br>
                     <div class="mensaje">
                         @if($mensaje->count())
                         <div class="mensaje_title">
                         
                         
-                        <h3 colspan="8" class="negrita">Mensaje</h3>
+                        <h3 colspan="8" class="negrita">Mensajes</h3>
                         </div>
                         <br>
                         
                         @foreach($mensaje as $comentario)
                         <div class="mensaje-style">
+                        <img width="50px" height="50px" src="{{ asset('uploads/avatars/'.$comentario->avatar) }}">
+                        <h4 class="textJutificado negrita">{{$comentario->name}}<span>:</span></h4>
                         <h4 class="textJutificado">{{$comentario->contenido}}</h4>
                         <h5 class="textJutificado negrita">{{$comentario->created_at}}</h5>
                          </div>
@@ -74,7 +76,7 @@
                        
                         @else
 
-                        <h3 colspan="8">¡No hay Comentarios todavia!</h3>
+                        <h3 colspan="8">¡No hay Mensajes todavia!</h3>
 
                         @endif
                     </div>

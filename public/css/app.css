@@ -74,7 +74,10 @@ body {
   text-align: left;
   background-color: #f8fafc;
   background-image:url('/uploads/fondos/fondo4.jpg');
-  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10892,3 +10895,17 @@ a.text-dark:focus {
     color: white;
  }
 
+ .carousel-content{
+  font-family:cursive;
+  color: white;
+  width: 500px; 
+  margin: 0 auto;
+}
+
+.carousel-content p{
+font-size: 14pt;
+}
+
+.carousel-content h1{
+  font-weight: bold;
+  }
