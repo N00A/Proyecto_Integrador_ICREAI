@@ -22,14 +22,14 @@
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-content">
-                            <h1 style="color: #4eb3a2;">¡Crea nuevas historias!</h1>
+                            <h1 style="color: white;">¡Crea nuevas historias!</h1>
                             <p>Unete a otras personas para crear escritos
                                 nunca antes vistos, a travez de la técnica cadaver exquisito</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-content">
-                            <h1 style="color: #4eb3a2;">Usa la escritura creativa</h1>
+                            <h1 style="color: white;">Usa la escritura creativa</h1>
                             <p>Escoge un genero de tu interés y dale comienzo a una gran historia o bien continua desde
                                 lo que escribió otra persona, lo importante es que dejes volar tus pensamientos y contribuyas
                                 a crear textos llenos de creatividad, expresividad e imaginación.</p>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-content">
-                            <h1 style="color: #4eb3a2;">¿Que es el cadáver exquisito?</h1>
+                            <h1 style="color: white;">¿Que es el cadáver exquisito?</h1>
                             <p>Es un juego inventado por los surrealistas, que consiste en crear una obra en colaboración
                                 ya sea un escrito o ilustración.</p>
 
