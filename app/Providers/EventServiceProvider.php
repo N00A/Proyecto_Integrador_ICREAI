@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\GeneroEvent;
+use App\Listeners\GeneroListener;
+use App\Events\EscribirEvent;
+use App\Listeners\EscribirListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,6 +21,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+
+        GeneroEvent::class=>[
+            GeneroListener::class,
+        ],
+
+        EscribirEvent::class=>[
+            EscribirListener::class,
         ],
     ];
 

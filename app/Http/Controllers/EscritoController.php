@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Escrito;
+use App\Events\EscribirEvent;
 use App\Mensaje;
 use PDF;
 use App\Genero;
@@ -31,22 +32,55 @@ class EscritoController extends Controller
     {
 
         $genero_id = $request->genero_id;
+        $user_id = $request->user_id;
 
-
-        $escritos = DB::table('escritos as es')
-            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
-            ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
-            ->where('es.genero_id', $genero_id)
+        $roleU = DB::table('role_user as ru')
+            ->select('ru.id', 'ru.role_id', 'ru.user_id')
+            ->where('ru.user_id', $user_id)
             ->get();
 
-        $mensaje = DB::table('mensajes as me')
-            ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
-            ->join('users as u', 'u.id', '=', 'me.user_id')
-            ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at','u.avatar','u.name')
-            ->where('me.genero_id', $genero_id)
-            ->get();
+        $rol = 0;
+        if ($roleU != null) {
+            foreach ($roleU as $r) {
+                $rol = $r->role_id;
+            }
+        }
+        if ($rol == 3) {
+            $escritos = DB::table('escritos as es')
+                ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+                ->join('users as u', 'u.id', '=', 'es.user_id')
+                ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id', 'u.activo', 'u.name')
+                ->where('es.genero_id', $genero_id)
+                ->get();
 
-        return view('escrito.index', compact('escritos', 'genero_id', 'mensaje'));
+            $mensaje = DB::table('mensajes as me')
+                ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
+                ->join('users as u', 'u.id', '=', 'me.user_id')
+                ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at', 'u.avatar', 'u.name', 'u.activo')
+                ->where('me.genero_id', $genero_id)
+                ->orderByDesc('me.created_at')
+                ->get();
+        } else {
+            $escritos = DB::table('escritos as es')
+                ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+                ->join('users as u', 'u.id', '=', 'es.user_id')
+                ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id', 'u.activo', 'u.name')
+                ->where('es.genero_id', $genero_id)
+                ->where('u.activo', '=', 1)
+                ->get();
+
+            $mensaje = DB::table('mensajes as me')
+                ->join('generos as ge', 'ge.id', '=', 'me.genero_id')
+                ->join('users as u', 'u.id', '=', 'me.user_id')
+                ->SELECT('me.id', 'me.contenido', 'me.genero_id', 'me.user_id', 'me.created_at', 'u.avatar', 'u.name', 'u.activo')
+                ->where('me.genero_id', $genero_id)
+                ->where('u.activo', '=', 1)
+                ->orderByDesc('me.created_at')
+                ->get();
+        }
+
+
+        return view('escrito.index', compact('escritos', 'genero_id', 'mensaje', 'rol'));
     }
 
     /**
@@ -98,7 +132,19 @@ class EscritoController extends Controller
                 }
             }
 
-            return view('escrito.create', compact('genero', 'escrito', 'corte', 'user_id', 'ultId'));
+            $roleU = DB::table('role_user as ru')
+                ->select('ru.id', 'ru.role_id', 'ru.user_id')
+                ->where('ru.user_id', $user_id)
+                ->get();
+
+            $rol = 0;
+            if ($roleU != null) {
+                foreach ($roleU as $r) {
+                    $rol = $r->role_id;
+                }
+            }
+
+            return view('escrito.create', compact('genero', 'escrito', 'corte', 'user_id', 'ultId','rol'));
         }
     }
     public function createMensaje(Request $request)
@@ -116,11 +162,31 @@ class EscritoController extends Controller
 
         $this->validate($request, ['texto' => 'required|min:100', 'user_id' => 'required', 'genero_id' => 'required']);
 
+        $genero_id = $request->genero_id;
+        $user_id = $request->user_id;
+
+        $ultimoId = DB::table('escritos as es')
+            ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+            ->SELECT('es.user_id')
+            ->where('es.genero_id', $genero_id)
+            ->orderByDesc('es.created_at')
+            ->paginate(1);
+        $ultId = 0;
+        if ($ultimoId != null) {
+            foreach ($ultimoId as $id) {
+                $ultId = $id->user_id;
+            }
+        }
+
+
         Escrito::create($request->all());
 
-        $genero_id = $request->genero_id;
+        $Esgenero = Genero::find($genero_id);
 
-        return redirect()->route('escrito.index', compact('genero_id'));
+        event(new EscribirEvent($Esgenero, $ultId));
+
+
+        return redirect()->route('escrito.index', compact('genero_id', 'user_id'));
     }
 
     public function storeMensaje(Request $request)
@@ -131,8 +197,10 @@ class EscritoController extends Controller
         Mensaje::create($request->all());
 
         $genero_id = $request->genero_id;
+        $user_id = $request->user_id;
 
-        return redirect()->route('escrito.index', compact('genero_id'));
+
+        return redirect()->route('escrito.index', compact('genero_id','user_id'));
     }
 
     /**
@@ -177,7 +245,8 @@ class EscritoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Escrito::find($id)->delete();
+        return redirect()->back();
     }
 
     public function crearPDF(Request $request)
@@ -206,8 +275,10 @@ class EscritoController extends Controller
 
         $escritoPdf = DB::table('escritos as es')
             ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+            ->join('users as u', 'u.id', '=', 'es.user_id')
             ->SELECT('es.texto')
             ->where('es.genero_id', $genero_id)
+            ->where('u.activo', '=', 1)
             ->get();
 
         return PDF::loadView('pdf', compact('generoPdf', 'escritoPdf', 'fechaPdf'))

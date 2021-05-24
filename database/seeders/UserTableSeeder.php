@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\User;
 use App\Role;
-
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder  extends Seeder
@@ -18,18 +18,21 @@ class UserTableSeeder  extends Seeder
         $user->name = 'User';
         $user->email = 'user@example.com';
         $user->password = bcrypt('secret');
+        $user->email_verified_at=Carbon::now();
         $user->save();
         $user->roles()->attach($role_user);
         $user = new User();
         $user->name = 'mod';
         $user->email = 'mod@example.com';
         $user->password = bcrypt('secret');
+        $user->email_verified_at=Carbon::now();
         $user->save();
         $user->roles()->attach($role_mod);
         $user = new User();
         $user->name = 'admin';
         $user->email = 'admin@example.com';
         $user->password = bcrypt('secret');
+        $user->email_verified_at=Carbon::now();
         $user->save();
         $user->roles()->attach($role_admin);
     }

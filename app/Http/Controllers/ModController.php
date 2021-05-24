@@ -30,7 +30,7 @@ class ModController extends Controller
             $users = DB::table('users')
                 ->join('role_user', 'users.id', '=', 'role_user.user_id')
                 ->select('users.*', 'role_user.role_id')
-                ->where('email', 'LIKE', '%' . $query . '%')
+                ->where('users.id', 'LIKE', '%' . $query . '%')
                 ->where('role_user.role_id', '=', 2)
                 ->orderBy('users.id', 'asc')
                 ->paginate(5);

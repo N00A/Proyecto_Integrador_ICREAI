@@ -3,7 +3,7 @@ body {
     padding-top: 60px;
     font-size: 14px;
     color: #444444;
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 p {
@@ -1128,7 +1128,7 @@ a.label:focus {
     padding: 0;
     display: none;
     box-shadow: none;
-    background: #fff;
+    background: rgb(48, 48, 48);
 }
 
 .sidebar ul {
@@ -1250,6 +1250,7 @@ a.label:focus {
 .profile-usertitle-name {
     font-size: 20px;
     margin-bottom: 0px;
+    user-select: none;
 }
 
 .profile-usertitle-status {
@@ -1504,8 +1505,6 @@ p.back-link {
 }
 
 #tituloIcre {
-    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
-        "AppleGothic", sans-serif;
     font-size: 55pt;
     padding: 10px 10px;
     text-align: center;
@@ -1514,18 +1513,21 @@ p.back-link {
     color:  #30a5ff;
     font-weight: bold;
     letter-spacing: 0.1em;
+    user-select: none;
 }
 
 .mainContainer{
-    width:100%; 
+    width:1100px; 
+    width: 100%; 
     height: 100%; 
     margin: 0 auto; 
-    max-width: 1000px;
+    
+    
 }
 
 .cajasGrandes {
     resize: none;
-    width: 215%;
+    
 }
 .cajaEscrito{
     resize: none;
@@ -1570,10 +1572,6 @@ p.back-link {
     margin: 0 auto;
 }
 
- .sizeBtnSuccess{
-    width: 100%;
- }
-
  .formSeparacion{
     padding: 20px;
  }
@@ -1597,18 +1595,27 @@ p.back-link {
 
 .barrasDeBusq{
     display:inline-block;
-    width: 75%;
+    
+    width: 28%;
+    width: 300px;
 }
 
 .p1{
 
- color:#ffb53e;}
-.p2{
- color: pink;   
-}
+ color:#4eb3a2;
+ font-family: 'Roboto', sans-serif;
+ user-select: none;}
  
+.p2{
+ color: #249ca3;  
+ font-family: 'Roboto', sans-serif; 
+ user-select: none;
+}
+
 .p3{
-    color:lightgreen;
+    color:#4eb3a2;
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
 }
 
 .selectorFoto{
@@ -1723,3 +1730,27 @@ label[for="mi-archivo"] {
         height: 6.6rem;
     }
 }
+
+.sbColor{
+color: white;
+
+}
+
+.interlineado{
+    line-height: 150%;
+}
+
+.notificaciones{
+    width: 250px;
+    padding: 5px;
+    height: auto;
+}
+
+.inactivo{
+    background-color: lightskyblue;
+}
+
+.nameCe{
+    color: #106BA0;
+}
+

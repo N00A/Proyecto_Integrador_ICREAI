@@ -30,7 +30,7 @@ class AdminController extends Controller
 
             $query = trim($request->get('searchText'));
             $users = DB::table('users')
-                ->where('email', 'LIKE', '%' . $query . '%')
+                ->where('id', 'LIKE', '%' . $query . '%')
                 ->where('id','<>',$request->User()->id)
                 ->orderBy('id', 'asc')
                 ->paginate(5);

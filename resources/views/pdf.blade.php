@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+    <title>Icreai PDF</title>
+    <link rel="shortcut icon" href="uploads/fondos/favicon.ico">
     <link href="css/pdf.css" rel="stylesheet">
-    <title></title>
-    <style>
-
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="headerPdf">
         <h2>Icreai, mas alla de tu imaginación</h2>
     </header>
-    <h3>{{$fechaPdf}}</h3>
-    <h1>Cadáver exquisito</h1>
-    @if($generoPdf->count())
+    <div class="textCenter">
+        <img width="160px" height="180px" src="uploads/fondos/logo brayan-02.png">
+    </div><br><br>
+    <div>
+        {{$fechaPdf}}<br><br>
 
-    @foreach($generoPdf as $g)
+        <span class="tituloP">Cadáver exquisito</span><br>
 
-    <h2>Genero: {{$g->name}} </h2>
+        @if($generoPdf->count())
 
-    @endforeach
+        @foreach($generoPdf as $g)
 
-    @endif
+        <span class="tituloS">Genero: {{$g->name}}</span>
+
+        @endforeach
+
+        @endif
+    </div>
     <hr>
     <div class="contenidoPdf break-word">
         @if($escritoPdf->count())

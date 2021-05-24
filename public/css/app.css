@@ -73,7 +73,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #f8fafc;
-  background-image:url('/uploads/fondos/fondo4.jpg');
+  background-image:url('/uploads/fondos/fondo4Invr.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -10888,7 +10888,7 @@ a.text-dark:focus {
 }
 
  .formSeparacionExt{
-    margin-top: 100px;
+    margin-top: 70px;
  }
 
  .whiteColor{
@@ -10898,8 +10898,11 @@ a.text-dark:focus {
  .carousel-content{
   font-family:cursive;
   color: white;
-  width: 500px; 
+  width: 330px; 
   margin: 0 auto;
+  padding-left: 8px;
+  user-select: none;
+
 }
 
 .carousel-content p{
@@ -10909,3 +10912,7 @@ font-size: 14pt;
 .carousel-content h1{
   font-weight: bold;
   }
+
+ .logo{
+  width: 200px;
+ } 

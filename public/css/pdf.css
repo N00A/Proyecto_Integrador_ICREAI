@@ -1,9 +1,9 @@
 body {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 3cm 2cm 2cm;
 }
 .contenidoPdf {
-    font-size: 20px;
+    font-size: 14px;
     text-align: justify;
     margin: 0cm 0cm;
 }
@@ -19,7 +19,7 @@ body {
     right: 0cm;
     height: 1cm;
     background-color: black;
-    color: #30a5ff;
+    color: #249ca3;
     text-align: center;
     line-height: 10px;
 }
@@ -31,9 +31,13 @@ body {
     right: 0cm;
     height: 1cm;
     background-color: black;
-    color: #30a5ff;
+    color: #249ca3;
     text-align: center;
     line-height: 10px;
+}
+
+.textCenter{
+    text-align: center;
 }
 
 .textLeft{
@@ -48,3 +52,13 @@ body {
     word-wrap: break-word;
     height: auto;
 }
+
+.tituloP{
+    font-size: 20px;
+    
+}
+
+.tituloS{
+    font-size: 16px;
+}
+

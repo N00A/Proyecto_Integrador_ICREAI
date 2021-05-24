@@ -6,13 +6,16 @@
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
 	<title id="pagActual">@yield('title')</title>
+	<link rel="shortcut icon" href="/uploads/fondos/favicon.png">
 	<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
 	<link href="{{asset('css/datepicker3.css')}}" rel="stylesheet">
 	<link href="{{asset('css/styles.css')}}" rel="stylesheet">
 	<!--Custom Font-->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-	
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.js"></script>
 	<script src="js/respond.min.js"></script>
@@ -27,9 +30,9 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
-				<a class="navbar-brand" href="#"><span>Icreai</span></a>
-				<ul class="nav navbar-top-links navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+				<!--<a class="navbar-brand" href="#"><span>Icreai</span></a>-->
+				<ul class="nav navbar-top-links navbar-right ">
+					<!--<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
 							<em class="fa fa-envelope"></em><span class="label label-danger">15</span>
 						</a>
 						<ul class="dropdown-menu dropdown-messages">
@@ -61,29 +64,61 @@
 									</a></div>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 					<li class="dropdown"><a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-							<em class="fa fa-bell"></em><span class="label label-info">5</span>
+							<em style="user-select: none;" class="fa fa-bell"></em>
+							@if (count(Auth()->user()->unreadNotifications))
+
+							<span class="label label-danger">{{count(Auth()->user()->unreadNotifications)}}</span>
+
+
+							@endif
+
 						</a>
-						<ul class="dropdown-menu dropdown-alerts">
-							<li><a href="#">
-									<div><em class="fa fa-envelope"></em> 1 New Message
-										<span class="pull-right text-muted small">3 mins ago</span>
-									</div>
-								</a></li>
-							<li class="divider"></li>
-							<li><a href="#">
-									<div><em class="fa fa-heart"></em> 12 New Likes
-										<span class="pull-right text-muted small">4 mins ago</span>
-									</div>
-								</a></li>
-							<li class="divider"></li>
-							<li><a href="#">
-									<div><em class="fa fa-user"></em> 5 New Followers
-										<span class="pull-right text-muted small">4 mins ago</span>
-									</div>
-								</a></li>
-						</ul>
+						<div class="dropdown-menu dropdown-messages notificaciones">
+							<span class="dropdown-header textCenter">Notificaciones no leidas</span>
+							@forelse (Auth()->user()->unreadNotifications as $notifications)
+							@if($notifications->type=='App\Notifications\GeneroNotification')
+							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
+								<em class="fa fa-envelope"></em>Nuevo género disponible:<br>
+								<em></em><span style="margin-left:13px;">{{$notifications->data['genero']}}</span>
+								<span class="pull-right text-muted small">{{$notifications->created_at->diffForHumans()}}</span>
+							</a><br><br>
+
+							@elseif($notifications->type=='App\Notifications\EscribirNotification')
+							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
+								<em class="fa fa-envelope"></em>Ya puedes volver a escribir en:<br>
+								<em></em><span style="margin-left:13px;">{{$notifications->data['genero']}}</span>
+								<span class="pull-right text-muted small">{{$notifications->created_at->diffForHumans()}}</span>
+							</a><br><br>
+							@endif
+							@empty
+							<span class="pull-right text-muted small">Sin notificaciones por leer</span>
+							@endforelse
+							<div class="divider"></div>
+
+							<span class="dropdown-header textCenter">Notificaciones leidas</span>
+							@forelse (Auth()->user()->readNotifications as $notifications)
+							@if($notifications->type=='App\Notifications\GeneroNotification')
+							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
+								<em class="fa fa-envelope-open"></em>Nuevo género disponible:<br>
+								<em></em><span style="margin-left:13px;">{{$notifications->data['genero']}}</span>
+								<span class="pull-right text-muted small">{{$notifications->created_at->diffForHumans()}}</span>
+							</a><br><br>
+
+							@elseif($notifications->type=='App\Notifications\EscribirNotification')
+							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
+								<em class="fa fa-envelope-open"></em>Ya puedes volver a escribir en:<br>
+								<em></em><span style="margin-left:13px;">{{$notifications->data['genero']}}</span>
+								<span class="pull-right text-muted small">{{$notifications->created_at->diffForHumans()}}</span>
+							</a><br><br>
+							@endif
+							@empty
+							<span class="pull-right text-muted small">Sin notificaciones por leer</span>
+							@endforelse
+							<div class="divider"></div>
+							<a href="{{ route('markAsRead') }}" class="dropdown-item dropdown-footer">Marcar todo como leido</a>
+						</div>
 					</li>
 				</ul>
 			</div>
@@ -95,30 +130,25 @@
 				<img src="{{ asset('uploads/avatars/'.Auth::user()->avatar) }}" class="img-responsive" alt="">
 			</div>
 			<div class="profile-usertitle">
-				<div class="profile-usertitle-name"> {{ Auth::user()->name }} </div>
-				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+				<div class="profile-usertitle-name sbColor"> {{ Auth::user()->name }} </div>
+
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="divider"></div>
-		<form role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search">
-			</div>
-		</form>
 		<ul class="nav menu">
-			<li id="focoIni"><a href="{{ route('inicio') }}"><em class="fa fa-home">&nbsp;</em>Inicio</a></li>
+			<li id="focoIni"><a href="{{ route('inicio') }}"><em class="fa fa-home sbColor">&nbsp;</em><span class="sbColor">Inicio</span></a></li>
 
-			<li id="focoPerfil"><a href="{{ route('user.profile') }}"><em class="fa fa-user-circle-o">&nbsp;</em>Perfil</a></li>
-			<li> <a class="dropdown-item fa fa-window-close" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-					{{ __('Cerrar sesión') }}
+			<li id="focoPerfil"><a href="{{ route('user.profile') }}"><em class="fa fa-user-circle-o sbColor">&nbsp;</em><span class="sbColor">Perfil</span></a></li>
+			<li> <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><em class="fa fa-window-close sbColor">&nbsp;</em>
+					<span class="sbColor">{{ __('Cerrar sesión') }}</span>
 				</a>
 				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 					@csrf
 				</form>
-			</li>
-			<li><img width="230px" height="200px" src='/uploads/fondos/fondo1.jpg'></li>
+			</li><br><br>
+			<li class="textCenter"><img width="180px" height="200px" src='/uploads/fondos/logo brayan-01.png'></li>
 		</ul>
 
 	</div>
@@ -256,24 +286,26 @@
 	</script>
 
 	<script>
-		window.onscroll = function(){
-			if(document.documentElement.scrollTop > 100){
+		window.onscroll = function() {
+
+			var contentMensajes = document.getElementById('btOcultar').offsetTop;
+
+			if (document.documentElement.scrollTop > 100 && document.documentElement.scrollTop <= contentMensajes) {
 				document.querySelector('.go-top-container')
-				.classList.add('showgotop');
-			}else{
+					.classList.add('showgotop');
+			} else {
 				document.querySelector('.go-top-container')
-				.classList.remove('showgotop');
+					.classList.remove('showgotop');
 			}
 		}
 
 		document.querySelector('.go-top-container')
-		.addEventListener('click', () =>{
-			window.scrollTo({
-				top:0,
-				behavior: 'smooth'
+			.addEventListener('click', () => {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
 			});
-		});
-		
 	</script>
 </body>
 

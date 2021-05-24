@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','Icreai_Admin')
+@section('title','Icreai Admin')
 @section('title_princ','Administrar Usuarios')
 @section('pp')
 
@@ -13,7 +13,6 @@
 
         <a href="{{ route('genero.index') }}">
             <button class="btn btn-success btnsDeGestion">Gestionar Generos</button></a>
-
 
     </div>
 </div>

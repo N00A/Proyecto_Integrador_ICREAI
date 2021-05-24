@@ -1,8 +1,9 @@
 @extends('layouts.layout')
+@section('title','Icreai')
 @section('pp')
 <div class="row">
     <section class="content">
-        <div class="col-md-8 col-md-offset-1">
+        <div class="col-md-8 col-md-offset-2">
             @if($user_id!=$ultId)
             @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -54,8 +55,7 @@
                                     <h3 class="alert alert-info informaciones">Asì va la historia:</h3>
 
                                     <h4 class="textJutificado">{{\Illuminate\Support\Str::substr($escrito->texto,$corte)}}</h4>
-                                    <!-- {{\Illuminate\Support\Str::substr($escrito->texto,300)}}-->
-                                    <!-- {{\Illuminate\Support\Str::length($escrito->texto)/33}}-->
+
                                 </td>
 
 
@@ -116,13 +116,22 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <input type="submit" value="Enviar" class="btn btn-success btn-block"><br>
-                                    <a href="{{ route('inicio') }}" class="btn btn-info btnblock">Atrás</a>
-                                </div>
+                            <div class="form-group textCenter">
+                                <input type="submit" value="Enviar" class="btn btn-success">
+                                <a href="{{ route('inicio') }}" class="btn btn-info">Atrás</a>
                             </div>
                         </form>
+                        @if($rol==3)
+                        <form method="GET" action="{{ route('escrito.index') }}" role="form" id="formB">
+
+
+                            <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero->id}}">
+                            <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
+                            <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-warning btn-block">
+
+                        </form>
+
+                        @endif
                     </div>
                 </div>
                 @else
@@ -135,6 +144,7 @@
 
 
                         <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero->id}}">
+                        <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
                         <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-success btn-block">
 
                     </form>

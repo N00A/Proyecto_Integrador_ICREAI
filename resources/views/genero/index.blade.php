@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','Icreai_Admin')
+@section('title','Icreai Generos')
 @section('title_princ','Administrar Generos')
 @section('pp')
 <div class="row marginAuto">

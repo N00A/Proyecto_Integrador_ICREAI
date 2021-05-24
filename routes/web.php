@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,27 +48,27 @@ Route::get('/autorizacion', function () {
     return view('errors.autorizacion');
 })->name('autorizacion');
 
-Route::get('/inicio', 'InicioController@index')->name('inicio')->middleware('age');
+Route::get('/inicio', 'InicioController@index')->name('inicio')->middleware(['age','verified']);
 
-Route::get('/pdf', 'EscritoController@crearPDF')->name('pdf')->middleware('age');
+Route::get('/pdf', 'EscritoController@crearPDF')->name('pdf')->middleware(['age','verified']);
 
-Route::post('/mensaje', 'EscritoController@storeMensaje')->name('escritoMensaje')->middleware('age');
+Route::post('/mensaje', 'EscritoController@storeMensaje')->name('escritoMensaje')->middleware(['age','verified']);
 
-Route::resource('administrador', 'AdminController')->middleware('age');
+Route::resource('administrador', 'AdminController')->middleware(['age','verified']);
 
-Route::resource('moderador', 'ModController')->middleware('age');
+Route::resource('moderador', 'ModController')->middleware(['age','verified']);
 
-Route::resource('rol', 'RolController')->middleware('age');
+Route::resource('rol', 'RolController')->middleware(['age','verified']);
 
-Route::resource('escrito', 'EscritoController')->middleware('age');
+Route::resource('escrito', 'EscritoController')->middleware(['age','verified']);
 
-Route::resource('genero', 'GeneroController')->middleware('age');
+Route::resource('genero', 'GeneroController')->middleware(['age','verified']);
 
 Auth::routes();
 
-Route::get('/profile', 'UserController@profile')->name('user.profile')->middleware('age');
+Route::get('/profile', 'UserController@profile')->name('user.profile')->middleware(['age','verified']);
 
-Route::post('/profile', 'UserController@update_profile')->name('user.profile.update')->middleware('age');
+Route::post('/profile', 'UserController@update_profile')->name('user.profile.update')->middleware(['age','verified']);
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -117,3 +118,25 @@ Route::post('/reset', function (Request $request) {
         ? redirect()->route('login')->with('status', __($status))
         : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+Route::get('markAsRead', function () {
+    auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->back();
+})->name('markAsRead');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/inicio');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

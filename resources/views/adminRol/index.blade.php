@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','Icreai_Admin')
+@section('title','Icreai Admin')
 @section('title_princ','Administrar Roles')
 @section('pp')
 

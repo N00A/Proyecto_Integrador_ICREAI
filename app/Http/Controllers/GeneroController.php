@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EscribirEvent;
+use App\Events\GeneroEvent;
 use Illuminate\Http\Request;
 use App\Genero;
+use App\Notifications\GeneroNotification;
+use App\User;
 
 class GeneroController extends Controller
 {
@@ -46,7 +50,18 @@ class GeneroController extends Controller
     {
 
         $this->validate($request, ['name' => 'required|max:40|min:3', 'descripcion' => 'required|min:10']);
-        Genero::create($request->all());
+
+        $genero = Genero::create($request->all());
+
+        event(new GeneroEvent($genero));
+
+        /* Para mandar la notificaciòn por el controlador sin usar listeners y events
+        user::all()
+        ->except(auth()->user()->id)
+        ->each(function(User $user) use ($genero){
+            $user-> notify(new GeneroNotification($genero));
+        });
+        */
         return redirect()->route('genero.index')->with('success', 'Registro creado satisfactoriamente');
     }
 
@@ -87,8 +102,8 @@ class GeneroController extends Controller
         $genero = Genero::find($id);
         $genero->name = $request->name;
         $genero->descripcion = $request->descripcion;
-      //$user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
-        
+        //$user->password = bcrypt($request->password); // Se encripta la contraseña usando la función bcrypt().
+
         $genero->save(); // Se guarda el registro en la base de datos.
 
         return redirect()->route('genero.index')->with('success', 'Registro actualizado');

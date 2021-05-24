@@ -1,5 +1,5 @@
 @extends('layouts.nav')
-@section('title','Icreai_Inicio')
+@section('title','Icreai Inicio')
 @section('contenido_inicio')
 @endsection
 @extends('layouts.layout')
@@ -17,8 +17,8 @@
     </div>
     @endif
 
-    <h3 class="textCenter negrita"><span class="p1">Mas alla</span> <span class="p3">de tu</span> <span class="p2">imaginación</span></h3><br><br>
-    <h4>Selecciona un género de tu interés y empieza a escribir.</h4><br>
+    <h3 class="textCenter negrita"><span class="p1">Mas alla</span> <span class="p3">de tu</span> <span class="p2">imaginación</span></h3><br>
+    <h4>Selecciona un género de tu interés y empieza a escribir.</h4>
 
     {!!Form::open(array('url'=>'escrito/create','method'=>'GET','autocomplete'=>'off'))!!}
 

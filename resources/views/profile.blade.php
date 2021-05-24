@@ -1,11 +1,11 @@
 @extends('layouts.layout')
-@section('title','Icreai_Profile')
+@section('title','Icreai Perfil')
 @section('title_princ','Perfil')
 @section('pp')
 
-<div class="container mainContainer">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 formSeparacion">
+<div class="row">
+    <div class="content">
+        <div class="col-md-6 col-md-offset-3 formSeparacion">
             @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Error!</strong> Revise los campos obligatorios.<br><br>
@@ -21,14 +21,14 @@
                 {{Session::get('success')}}
             </div>
             @endif
-            <div class="panel panel-default formSeparacion">
+            <div class="panel panel-default formSeparacion textCenter">
                 <h3 class="negrita">Foto</h3>
                 <img width="100px" height="100px" src="{{ asset('uploads/avatars/'.$user->avatar) }}">
                 <div class="panel-body">
                     <div class="row">
                         {{ Form::open(['route' => ['user.profile.update'], 'files' => true, 'method' => 'POST']) }}
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <h4>Selecciona una foto</h4>
                                     <span class="mi-archivo">
@@ -43,7 +43,7 @@
                         </div>
                         <h2 class="negrita">Datos</h2>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <h4>Nombre de Usuario</h4>
                                     <input type="text" name="name" id="name" class="form-control inputsm" value="{{$user->name}}">
@@ -51,17 +51,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <h4>Correo</h4>
                                     <input type="text" name="email" id="email" class="form-control inputsm" value="{{$user->email}}">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <input type="submit" value="Guardar Datos" class="btn btn-success btn-block">
-                            </div>
+                        <div class="form-group">
+
+                            <input type="submit" value="Guardar Datos" class="btn btn-success">
+
                         </div>
                         {{ Form::close() }}
 

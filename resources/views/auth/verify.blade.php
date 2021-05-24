@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Verifique su dirección de correo electrónico.') }}</div>
+                <div class="card-header navbar-dark bg-dark shadow-sm whiteColor">{{ __('Verifique su dirección de correo electrónico.') }}</div>
 
                 <div class="card-body">
                     @if (session('resent'))
@@ -15,8 +15,8 @@
                     @endif
 
                     {{ __('Antes de continuar, consulte su correo electrónico para ver si hay un enlace de verificación.') }}
-                    {{ __('Si no recibió el correo electrónico.') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                    {{ __('Si no recibió el correo electrónico.') }}
+                    <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
                         @csrf
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('haga clic aquí para solicitar otro') }}</button>.
                     </form>

@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title','Icreai_Mod')
+@section('title','Icreai Moderar')
 @section('title_princ','Editar Estados')
 @section('pp')
 
@@ -17,6 +17,7 @@
         <h4>Estado: Activo (1) Inactivo (0)</h4>
             <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
+                    <th class="textCenter">Id</th>
                     <th class="textCenter">Nombre</th>
                     <th class="textCenter">Correo</th>
                     <th class="textCenter">Estado</th>
@@ -24,7 +25,7 @@
                 </thead>
                 @foreach ($users as $user)
                 <tr>
-                    
+                    <td>{{ $user->id}}</td>
                     <td>{{ $user->name}}</td>
                     <td>{{ $user->email}}</td>
                     <td>{{ $user->activo}}</td>
