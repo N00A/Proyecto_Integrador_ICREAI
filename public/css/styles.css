@@ -1585,6 +1585,7 @@ p.back-link {
     width:200px;
     height: 50px;
     font-weight: 300px;
+    font-size: 18pt;
 }
 
 .listaInicio{
@@ -1752,5 +1753,9 @@ color: white;
 
 .nameCe{
     color: #106BA0;
+}
+
+.colorbtn{
+    color: black;
 }
 

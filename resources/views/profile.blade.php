@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
 
-                            <input type="submit" value="Guardar Datos" class="btn btn-success">
+                            <input type="submit" value="Guardar Datos" class="btn btn-success colorbtn">
 
                         </div>
                         {{ Form::close() }}

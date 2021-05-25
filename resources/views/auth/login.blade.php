@@ -23,14 +23,14 @@
                     <div class="carousel-item">
                         <div class="carousel-content">
                             <h1 style="color: white;">¡Crea nuevas historias!</h1>
-                            <p>Unete a otras personas para crear escritos
-                                nunca antes vistos, a travez de la técnica cadaver exquisito</p>
+                            <p>Únete a otras personas para crear escritos
+                                nunca antes vistos, a través de la técnica cadáver exquisito</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carousel-content">
                             <h1 style="color: white;">Usa la escritura creativa</h1>
-                            <p>Escoge un genero de tu interés y dale comienzo a una gran historia o bien continua desde
+                            <p>Escoge un género de tu interés y dale comienzo a una gran historia o bien continua desde
                                 lo que escribió otra persona, lo importante es que dejes volar tus pensamientos y contribuyas
                                 a crear textos llenos de creatividad, expresividad e imaginación.</p>
                         </div>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-xl-5">
             <div class="card">
-                <div class="card-header navbar-dark bg-dark shadow-sm whiteColor">{{ __('Inicio de sesión') }}</div>
+                <div class="card-header navbar-dark bg-dark shadow-sm whiteColor">{{ __('Bienvenido') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -98,7 +98,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Recuerdame') }}
+                                        {{ __('Recuérdame') }}
                                     </label>
                                 </div>
                             </div>

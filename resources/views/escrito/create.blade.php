@@ -34,7 +34,7 @@
 
                                 <h3>{{$genero->name}}</h3>
 
-                                <h3 class="alert alert-info informaciones">¿De que trata?</h3>
+                                <h3 class="alert alert-info informaciones">¿De qué trata?</h3>
                                 <h4>{{$genero->descripcion}}</h4>
 
                                 @endforeach
@@ -52,7 +52,7 @@
                             <tr>
 
                                 <td>
-                                    <h3 class="alert alert-info informaciones">Asì va la historia:</h3>
+                                    <h3 class="alert alert-info informaciones">Lo último escrito:</h3>
 
                                     <h4 class="textJutificado">{{\Illuminate\Support\Str::substr($escrito->texto,$corte)}}</h4>
 
@@ -95,7 +95,7 @@
                             <div class="row textCenter">
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label class="negrita infoCaracteres">Caracteres minimos: 100,</label>
+                                        <label class="negrita infoCaracteres">Caracteres mínimos: 100,</label>
                                         <label id="caracteres" class="negrita infoCaracteres"></label>
                                     </div>
                                 </div>
@@ -117,8 +117,8 @@
                             </div>
 
                             <div class="form-group textCenter">
-                                <input type="submit" value="Enviar" class="btn btn-success">
-                                <a href="{{ route('inicio') }}" class="btn btn-info">Atrás</a>
+                                <input type="submit" value="Enviar" class="btn btn-success colorbtn">
+                                <a href="{{ route('inicio') }}" class="btn btn-info colorbtn">Atrás</a>
                             </div>
                         </form>
                         @if($rol==3)
@@ -127,7 +127,7 @@
 
                             <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero->id}}">
                             <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
-                            <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-warning btn-block">
+                            <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-warning btn-block colorbtn">
 
                         </form>
 

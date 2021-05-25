@@ -25,7 +25,7 @@
                     <div class="table-container">
                         <form method="POST" action="{{ route('rol.update',$roles->id) }}" role="form" class="textCenter marginAuto">
                             {{ csrf_field() }}
-                            <h4 class="textCenter">Moderador (1) Usuario Normal (2) Administrador (3)</h4>
+                            <h4 class="textCenter">Moderador (1), Usuario Normal (2), Administrador (3).</h4>
                             <input name="_method" type="hidden" value="PATCH">
                             <div class="row">
                                 <div class="col-md-4 col-md-offset-4">
@@ -37,8 +37,8 @@
 
 
                             <div class="form-group">
-                                <input type="submit" value="Actualizar" class="btn btn-success">
-                                <a href="{{ route('rol.index') }}" class="btn btn-info">Atrás</a>
+                                <input type="submit" value="Actualizar" class="btn btn-success colorbtn">
+                                <a href="{{ route('rol.index') }}" class="btn btn-info colorbtn">Atrás</a>
                             </div>
                         </form>
                     </div>

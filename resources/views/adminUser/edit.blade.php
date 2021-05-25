@@ -43,7 +43,7 @@
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <h4 class="textCenter">Activo (1) Inactivo (0)</h4>
+                                        <h4 class="textCenter">Activo (1), Inactivo (0).</h4>
                                         <input type="number" min="0" max="1" name="activo" id="activo" class="form-control inputsm" value="{{$users->activo}}">
                                     </div>
                                 </div>
@@ -51,8 +51,8 @@
 
 
                             <div class="form-group">
-                                <input type="submit" value="Actualizar" class="btn btn-success">
-                                <a href="{{ route('administrador.index') }}" class="btn btn-info">Atrás</a>
+                                <input type="submit" value="Actualizar" class="btn btn-success colorbtn">
+                                <a href="{{ route('administrador.index') }}" class="btn btn-info colorbtn">Atrás</a>
                             </div>
                         </form>
                     </div>

@@ -17,7 +17,7 @@
     </div>
     @endif
 
-    <h3 class="textCenter negrita"><span class="p1">Mas alla</span> <span class="p3">de tu</span> <span class="p2">imaginación</span></h3><br>
+    <h3 class="textCenter negrita"><span class="p1">Más allá</span> <span class="p3">de tu</span> <span class="p2">imaginación</span></h3><br>
     <h4>Selecciona un género de tu interés y empieza a escribir.</h4>
 
     {!!Form::open(array('url'=>'escrito/create','method'=>'GET','autocomplete'=>'off'))!!}
@@ -32,8 +32,8 @@
         <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-success form-control btnComenzar negrita">
-            ¡¡ Comenzar !!
+        <button type="submit" class="btn btn-success form-control btnComenzar negrita colorbtn">
+            ¡ Comenzar !
         </button></a>
     </div>
     <div class="form-group">

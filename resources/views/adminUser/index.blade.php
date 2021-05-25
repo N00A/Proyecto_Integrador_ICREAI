@@ -9,10 +9,10 @@
         @include('adminUser.search')
 
         <a href="{{ route('rol.index') }}">
-            <button class="btn btn-success btnsDeGestion">Gestionar Roles</button></a>
+            <button class="btn btn-success btnsDeGestion colorbtn">Gestionar Roles</button></a>
 
         <a href="{{ route('genero.index') }}">
-            <button class="btn btn-success btnsDeGestion">Gestionar Generos</button></a>
+            <button class="btn btn-success btnsDeGestion colorbtn">Gestionar Géneros</button></a>
 
     </div>
 </div>
@@ -21,7 +21,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="table-responsive">
             <h2 class="textCenter negrita">Listado de Usuarios</h2>
-            <h4>Estado: Activo (1) Inactivo (0)</h4>
+            <h4>Estado: Activo (1), Inactivo (0).</h4>
             <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
                     <th class="textCenter">Id</th>
@@ -38,9 +38,9 @@
                     <td>{{ $user->activo}}</td>
                     <td>
                         <a href="{{URL::action('AdminController@edit',$user->id)}}">
-                            <button class="btn btn-info">Editar</button></a>
+                            <button class="btn btn-info colorbtn">Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$user->id}}" data-toggle="modal">
-                            <button class="btn btn-danger">Eliminar</button></a>
+                            <button class="btn btn-danger colorbtn">Eliminar</button></a>
                     </td>
                 </tr>
                 @include('adminUser.modal')

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title','Icreai Añadir Generos')
-@section('title_princ','Añadir Generos')
+@section('title_princ','Añadir Géneros')
 @section('pp')
 <div class="row">
     <section class="content">
@@ -44,8 +44,8 @@
 
                             <div class="form-group">
 
-                                <input type="submit" value="Registrar" class="btn btn-success">
-                                <a href="{{ route('genero.index') }}" class="btn btn-info btnblock">Atrás</a>
+                                <input type="submit" value="Registrar" class="btn btn-success colorbtn">
+                                <a href="{{ route('genero.index') }}" class="btn btn-info btnblock colorbtn">Atrás</a>
 
                             </div>
                         </form>

@@ -6,10 +6,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title">Eliminar Genero</h4>
+                <h4 class="modal-title">Eliminar Género</h4>
             </div>
             <div class="modal-body">
-                <p>Confirme si desea Eliminar el Genero</p>
+                <p>Confirme si desea Eliminar el Género</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

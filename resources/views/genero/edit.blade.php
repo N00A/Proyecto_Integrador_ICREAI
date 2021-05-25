@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title','Icreai Editar Generos')
-@section('title_princ','Editar Generos')
+@section('title_princ','Editar Géneros')
 @section('pp')
 <div class="row">
     <section class="content">
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h4>Genero</h4>
+                                        <h4>Género</h4>
                                         <input type="text" name="name" id="name" class="form-control inputsm cajasGrandes" value="{{$genero->name}}">
                                     </div>
                                 </div>
@@ -44,8 +44,8 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Actualizar" class="btn btn-success">
-                                <a href="{{ route('genero.index') }}" class="btn btn-info btnblock">Atrás</a>
+                                <input type="submit" value="Actualizar" class="btn btn-success colorbtn">
+                                <a href="{{ route('genero.index') }}" class="btn btn-info btnblock colorbtn">Atrás</a>
                             </div>
 
                         </form>

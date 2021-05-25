@@ -12,10 +12,10 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div style="text-align: left;">
-                <h1 class="negrita">Escrito</h1>
+                <h1 class="negrita">Cadáver Exquisito</h1>
             </div><br>
             <div style="text-align: left;">
-                <a class="btn btn-success" href="#mensaje">Ir a los mensajes</a>
+                <a class="btn btn-success colorbtn" href="#mensaje">Ir a los mensajes</a>
             </div><br>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -26,7 +26,7 @@
 
                         @if($escritos->count())
 
-                        <h3>¡Comenzemos a LEER!</h3><br>
+                        <h3>¡Comencemos  a Leer!</h3><br>
 
                         @foreach($escritos as $escrito)
 
@@ -49,11 +49,11 @@
                         @if($rol==3)
 
                         <a href="" data-target="#modal-delete-{{$escrito->id}}" data-toggle="modal">
-                            <button class="btn btn-danger">Eliminar</button></a><br><br>
-                        @include('escrito.modal')
+                            <button class="btn btn-danger colorbtn">Eliminar</button></a><br><br>
+                           
                         @endif
-
-
+                        
+                        
                         @endforeach
 
                         @else
@@ -68,19 +68,19 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12" id="btOcultar">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-danger negrita">
+                            <button type="submit" class="btn btn-danger negrita colorbtn">
                                 Descargar PDF
                             </button>
                         </div>
                         <div class="btn-group">
-                            <a style="width: 138px;" href="{{ route('inicio') }}" class="btn btn-info negrita">Volver al inicio</a>
+                            <a style="width: 138px;" href="{{ route('inicio') }}" class="btn btn-info negrita colorbtn">Volver al  inicio</a>
                         </div>
                     </div><br>
-
+                    
                     {!!Form::close()!!}
                     <br>
                     <br>
-                    <h3 style="color:blacky">¡Conversa con otros!</h3><br>
+                    <h3 style="color:blacky">¡Opina sobre el escrito!</h3><br>
                     <a name="mensaje"></a>
                     <div class="mensaje">
                         @if($mensaje->count())
@@ -123,11 +123,11 @@
 
                             <div class="form-group">
                                 <div class="mensaje-style">
-                                    <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Habla aquí con otros escritores">
+                                    <input type="text" name="contenido" id="contenido" class="form-control inputsm" placeholder="Comenta aquí">
                                 </div>
                             </div>
                             <div class="btn-group">
-                                <button type="submit" class="btn btn-success negrita">
+                                <button type="submit" class="btn btn-success negrita colorbtn">
                                     Enviar
                                 </button>
                             </div>
@@ -139,4 +139,5 @@
             </div>
         </div>
     </div>
+    @include('escrito.modal')
     @endsection

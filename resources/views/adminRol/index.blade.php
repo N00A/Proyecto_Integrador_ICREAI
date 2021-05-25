@@ -15,7 +15,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="table-responsive">
         <h2 class="textCenter negrita">Listado de Roles</h2>
-        <h4>Roles: Moderador (1) Usuario Normal (2) Administrador (3)</h4>
+        <h4>Roles: Moderador (1), Usuario Normal (2), Administrador (3).</h4>
             <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
                     
@@ -33,7 +33,7 @@
                     <td>{{ $rol->role_id}}</td>
                     <td>
                         <a href="{{URL::action('RolController@edit',$rol->id)}}">
-                            <button class="btn btn-info">Editar</button></a>
+                            <button class="btn btn-info colorbtn">Editar</button></a>
                     </td>
                 </tr>
                 @include('adminRol.modal')

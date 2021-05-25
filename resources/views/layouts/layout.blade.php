@@ -76,7 +76,7 @@
 
 						</a>
 						<div class="dropdown-menu dropdown-messages notificaciones">
-							<span class="dropdown-header textCenter">Notificaciones no leidas</span>
+							<span class="dropdown-header textCenter">Notificaciones no leídas</span>
 							@forelse (Auth()->user()->unreadNotifications as $notifications)
 							@if($notifications->type=='App\Notifications\GeneroNotification')
 							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
@@ -97,7 +97,7 @@
 							@endforelse
 							<div class="divider"></div>
 
-							<span class="dropdown-header textCenter">Notificaciones leidas</span>
+							<span class="dropdown-header textCenter">Notificaciones leídas</span>
 							@forelse (Auth()->user()->readNotifications as $notifications)
 							@if($notifications->type=='App\Notifications\GeneroNotification')
 							<a href="/escrito/create?genero={{$notifications->data['genero_id']}}&user_id={{Auth()->user()->id}}" class="dropdown-item">
@@ -117,7 +117,7 @@
 							<span class="pull-right text-muted small">Sin notificaciones por leer</span>
 							@endforelse
 							<div class="divider"></div>
-							<a href="{{ route('markAsRead') }}" class="dropdown-item dropdown-footer">Marcar todo como leido</a>
+							<a href="{{ route('markAsRead') }}" class="dropdown-item dropdown-footer">Marcar todo como leído</a>
 						</div>
 					</li>
 				</ul>
@@ -258,7 +258,7 @@
 
 			$caracteres += 1;
 			if ($caracteres > 0 && $caracteres <= 60) {
-				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspirate ;D';
+				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspírate ;D';
 			} else if ($caracteres > 60 && $caracteres <= 99) {
 				document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡Ya Falta poco!';
 			} else {
@@ -273,7 +273,7 @@
 				$caracteres = $(this).val().length;
 
 				if ($caracteres >= 0 && $caracteres <= 60) {
-					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspirate ;D';
+					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' Inspírate ;D';
 				} else if ($caracteres > 60 && $caracteres <= 99) {
 					document.getElementById('caracteres').innerHTML = 'llevas: ' + $caracteres + ' ¡Ya Falta poco!';
 				} else {
