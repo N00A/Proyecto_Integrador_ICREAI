@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.1",
-        "nesbot/carbon": "^2.46"
+        "nesbot/carbon": "^2.46",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
