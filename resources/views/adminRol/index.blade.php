@@ -40,7 +40,7 @@
                 @endforeach
             </table>
         </div>
-
+        {{$roles->render()}}
     </div>
 </div>
 
