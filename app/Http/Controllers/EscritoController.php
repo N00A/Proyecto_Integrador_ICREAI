@@ -105,7 +105,7 @@ class EscritoController extends Controller
                 ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
                 ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
                 ->where('es.genero_id', $genero_id)
-                ->orderByDesc('es.id')
+                ->orderByDesc('es.created_at')
                 ->paginate(10);
             $corte = 0;
             if ($escrito != null) {
@@ -280,6 +280,7 @@ class EscritoController extends Controller
             ->SELECT('es.texto')
             ->where('es.genero_id', $genero_id)
             ->where('u.activo', '=', 1)
+            ->orderBy('es.created_at')
             ->get();
 
         return PDF::loadView('pdf', compact('generoPdf', 'escritoPdf', 'fechaPdf'))

@@ -35,7 +35,6 @@
                 @endforeach
             </table>
         </div>
-        {{$genero->render()}}
     </div>
 </div>
 
