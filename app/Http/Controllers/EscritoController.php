@@ -51,6 +51,7 @@ class EscritoController extends Controller
                 ->join('users as u', 'u.id', '=', 'es.user_id')
                 ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id', 'u.activo', 'u.name')
                 ->where('es.genero_id', $genero_id)
+                ->orderBy('es.created_at')
                 ->get();
 
             $mensaje = DB::table('mensajes as me')
@@ -67,7 +68,7 @@ class EscritoController extends Controller
                 ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id', 'u.activo', 'u.name')
                 ->where('es.genero_id', $genero_id)
                 ->where('u.activo', '=', 1)
-                ->orderByDesc('es.created_at')
+                ->orderBy('es.created_at')
                 ->get();
 
             $mensaje = DB::table('mensajes as me')
