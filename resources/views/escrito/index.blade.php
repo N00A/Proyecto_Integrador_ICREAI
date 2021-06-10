@@ -33,13 +33,13 @@
                         @if($escrito->activo==0)
 
                         @if($rol==3)
-                        <span class="negrita nameCe">#{{$escrito->user_id}} -{{$escrito->name}}</span>
+                        <span class="negrita nameCe">id: {{$escrito->user_id}} -{{$escrito->name}}</span>
                         <h4 class="textJutificado interlineado inactivo">{{$escrito->texto}}</h4>
                         @endif
 
                         @else
                         @if($rol==1 || $rol==3)
-                        <span class="negrita nameCe">#{{$escrito->user_id}} -{{$escrito->name}}</span>
+                        <span class="negrita nameCe">id: {{$escrito->user_id}} -{{$escrito->name}}</span>
                         @endif
 
                         <h4 class="textJutificado interlineado">{{$escrito->texto}}</h4>

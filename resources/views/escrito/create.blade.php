@@ -124,10 +124,16 @@
                         @if($rol==3)
                         <form method="GET" action="{{ route('escrito.index') }}" role="form" id="formB">
 
+                            @if($ultId!=0)
 
                             <input type="hidden" name="genero_id" id="genero_id" class="form-control inputsm" value="{{$genero->id}}">
                             <input type="hidden" name="user_id" id="user_id" class="form-control inputsm" value="{{ Auth::user()->id}}">
                             <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-warning btn-block colorbtn">
+
+                            @else
+
+                            <input type="submit" value="Ir al cadaver Exquisito" class="btn btn-warning btn-block colorbtn" disabled>
+                            @endif
 
                         </form>
 

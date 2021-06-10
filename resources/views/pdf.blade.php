@@ -13,7 +13,7 @@
 
 <body>
     <header class="headerPdf">
-        <h2>Icreai, mas alla de tu imaginación</h2>
+        <h2>Icreai, mas allá de tu imaginación</h2>
     </header>
     <div class="textCenter">
         <img width="160px" height="180px" src="uploads/fondos/logo brayan-02.png">
