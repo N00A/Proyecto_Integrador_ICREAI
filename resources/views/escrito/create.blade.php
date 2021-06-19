@@ -121,7 +121,7 @@
                                 <a href="{{ route('inicio') }}" class="btn btn-info colorbtn">Atrás</a>
                             </div>
                         </form>
-                        @if($rol==3)
+                        @if($rol==3 or $rol==1)
                         <form method="GET" action="{{ route('escrito.index') }}" role="form" id="formB">
 
                             @if($ultId!=0)

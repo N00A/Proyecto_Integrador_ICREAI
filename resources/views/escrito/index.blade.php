@@ -139,5 +139,7 @@
             </div>
         </div>
     </div>
-    @include('escrito.modal')
+    @foreach($escritos as $escrito)
+        @include('escrito.modal')
+    @endforeach    
     @endsection

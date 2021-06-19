@@ -9,7 +9,7 @@
                 <h4 class="modal-title">Eliminar Escrito</h4>
             </div>
             <div class="modal-body">
-                <p>Confirme si desea Eliminar el Escrito</p>
+                <p>Confirme si desea Eliminar el Escrito #{{$escrito->id}}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

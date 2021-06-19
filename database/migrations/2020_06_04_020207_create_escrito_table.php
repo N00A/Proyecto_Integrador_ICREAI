@@ -15,7 +15,7 @@ class CreateEscritoTable extends Migration
     {
         Schema::create('escritos', function (Blueprint $table) {
             $table->bigincrements('id');
-            $table->string('texto',1800);
+            $table->string('texto',16300);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('genero_id')->unsigned();
