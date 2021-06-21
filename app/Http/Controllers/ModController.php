@@ -33,7 +33,7 @@ class ModController extends Controller
                 ->where('users.id', 'LIKE', '%' . $query . '%')
                 ->where('role_user.role_id', '=', 2)
                 ->orderBy('users.id', 'asc')
-                ->paginate(5);
+                ->paginate(10);
             return view('mod.index', ["users" => $users, "searchText" => $query]);
             
         }

@@ -26,7 +26,7 @@
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+				<button type="button" class="navbar-toggle collapsed up" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span></button>
@@ -148,7 +148,7 @@
 					@csrf
 				</form>
 			</li><br><br>
-			<li class="textCenter"><img width="180px" height="200px" src='/uploads/fondos/logo brayan-01.png'></li>
+			<li class="textCenter"><img width="150px" height="150px" src='/uploads/fondos/logo brayan-01.png'></li>
 		</ul>
 
 	</div>
@@ -300,6 +300,15 @@
 		}
 
 		document.querySelector('.go-top-container')
+			.addEventListener('click', () => {
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			});
+	</script>
+	<script>
+		document.querySelector('.up')
 			.addEventListener('click', () => {
 				window.scrollTo({
 					top: 0,

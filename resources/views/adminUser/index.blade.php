@@ -19,9 +19,11 @@
 <br>
 <div class="row" style="margin: 0 auto;">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <h2 class="textCenter negrita">Listado de Usuarios</h2>
+        <h4 class="textCenter">El estado en 1 significa Acceso a la App.</h4>
+        <h4 class="textCenter">El estado en 0 significa Usuario Bloqueado.</h4>
         <div class="table-responsive">
-            <h2 class="textCenter negrita">Listado de Usuarios</h2>
-            <h4>Estado: Activo (1), Inactivo (0).</h4>
             <table class="table  table-bordered table-condensed table-hover textCenter">
                 <thead>
                     <th class="textCenter">Id</th>

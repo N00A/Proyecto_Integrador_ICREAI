@@ -33,7 +33,7 @@ class AdminController extends Controller
                 ->where('id', 'LIKE', '%' . $query . '%')
                 ->where('id','<>',$request->User()->id)
                 ->orderBy('id', 'asc')
-                ->paginate(5);
+                ->paginate(10);
             return view('adminUser.index', ["users" => $users, "searchText" => $query]);
 
         }

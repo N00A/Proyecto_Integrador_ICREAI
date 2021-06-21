@@ -43,7 +43,8 @@
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <h4 class="textCenter">Activo (1), Inactivo (0).</h4>
+                                        <h4 class="textCenter">El estado en 1 significa Acceso a la App.</h4>
+                                        <h4 class="textCenter">El estado en 0 significa Usuario Bloqueado.</h4>
                                         <input type="number" min="0" max="1" name="activo" id="activo" class="form-control inputsm" value="{{$users->activo}}">
                                     </div>
                                 </div>

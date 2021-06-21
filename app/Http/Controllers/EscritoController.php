@@ -104,8 +104,10 @@ class EscritoController extends Controller
 
             $escrito = DB::table('escritos as es')
                 ->join('generos as ge', 'ge.id', '=', 'es.genero_id')
+                ->join('users as u', 'u.id', '=', 'es.user_id')
                 ->SELECT('es.id', 'es.texto', 'es.user_id', 'es.genero_id')
                 ->where('es.genero_id', $genero_id)
+                ->where('u.activo', '=', 1)
                 ->orderByDesc('es.created_at')
                 ->paginate(10);
             $corte = 0;

@@ -10,10 +10,11 @@
 </div>
 <div class="row marginAuto">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <h2 class="textCenter negrita">Listado de Géneros</h2>
         <div class="table-responsive">
-            <h2 class="textCenter negrita">Listado de Géneros</h2>
             <table class="table  table-bordered table-condensed table-hover textCenter">
-                <thead >
+                <thead>
                     <th class="textCenter">Id</th>
                     <th class="textCenter">Género</th>
                     <th class="textCenter">Descripción</th>
@@ -24,7 +25,7 @@
                     <td>{{ $genero->id}}</td>
                     <td>{{ $genero->name}}</td>
                     <td>{{ $genero->descripcion}}</td>
-                    <td >
+                    <td>
                         <a href="{{URL::action('GeneroController@edit',$genero->id)}}">
                             <button class="btn btn-info colorbtn">Editar</button></a>
                         <a href="" data-target="#modal-delete-{{$genero->id}}" data-toggle="modal">
